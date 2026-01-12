@@ -238,7 +238,7 @@ const Home = () => {
                                 <span className="relative z-10 group-hover:text-black transition-colors duration-300">Book Intro Call</span>
                                 <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
                             </a>
-                            <a href="/Prasad_kadam.pdf" target="_blank" rel="noopener noreferrer" className="group px-6 md:px-8 py-3 md:py-4 border border-black text-black font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-black hover:text-white transition-all duration-300 text-center">
+                            <a href="https://drive.google.com/drive/folders/1GAf5XFtumVJgHiWj9p4yz45hB3_40kCt?usp=drive_link" target="_blank" rel="noopener noreferrer" className="group px-6 md:px-8 py-3 md:py-4 border border-black text-black font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-black hover:text-white transition-all duration-300 text-center">
                                 Download Resume
                             </a>
                             <a href="/#/work" className="group px-6 md:px-8 py-3 md:py-4 border border-neutral-200 text-neutral-700 font-bold uppercase tracking-widest text-[10px] md:text-xs hover:border-black hover:text-black transition-all duration-300 text-center">
@@ -544,7 +544,7 @@ const Home = () => {
                             <a href="/#/pricing" className="px-5 py-3 bg-black text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-lg hover:scale-[1.02] transition-transform">
                                 View Pricing / Rates
                             </a>
-                            <a href="/Prasad_kadam.pdf" target="_blank" rel="noopener noreferrer" className="px-5 py-3 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.2em] text-[11px] rounded-lg hover:border-black">
+                            <a href="https://drive.google.com/drive/folders/1GAf5XFtumVJgHiWj9p4yz45hB3_40kCt?usp=drive_link" target="_blank" rel="noopener noreferrer" className="px-5 py-3 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.2em] text-[11px] rounded-lg hover:border-black">
                                 Download Resume
                             </a>
                         </div>
