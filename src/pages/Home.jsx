@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import {
-    Code2, Layers, Rocket, Search, Briefcase, ExternalLink, Github, Globe, ShieldCheck, Server
+    Code2, Layers, Rocket, Search, Briefcase, ExternalLink, Github, Globe, ShieldCheck, Server, Phone, Mail, Clock
 } from 'lucide-react';
 
 import TerminalWindow from '../components/TerminalWindow';
@@ -110,6 +110,13 @@ const PROCESS_STEPS = [
     }
 ];
 
+const QUICK_FACTS = [
+    { label: "Current Role", value: "Junior Developer @ VIZIPP", icon: <Briefcase size={16} /> },
+    { label: "Location", value: "Nashik, India (IST)", icon: <Globe size={16} /> },
+    { label: "Availability", value: "Open to full-time & freelance contracts", icon: <Rocket size={16} /> },
+    { label: "Response Time", value: "Replies within 24 hours", icon: <Clock size={16} /> }
+];
+
 const EXPERIENCE = [
     {
         company: "VIZIPP",
@@ -197,7 +204,7 @@ const Home = () => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </div>
-                            Portfolio Live
+                            Open for full-time + freelance
                         </motion.div>
 
                         <div className="space-y-1">
@@ -216,9 +223,9 @@ const Home = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="text-lg md:text-2xl text-neutral-600 max-w-lg font-light leading-relaxed border-l-2 border-black pl-6"
+                            className="text-lg md:text-2xl text-neutral-600 max-w-xl font-light leading-relaxed border-l-2 border-black pl-6"
                         >
-                            Full Stack Developer building React/TypeScript frontends and Node.js/Express APIs with JWT security, Zod validation, and tuned queries across MongoDB and SQL.
+                            Full Stack Developer at VIZIPP delivering React/TypeScript frontends and Node.js/Express APIs with JWT security, Zod validation, and tuned queries across MongoDB, PostgreSQL, and MySQL. Open to full-time roles and freelance/contract projects.
                         </motion.p>
 
                         <motion.div
@@ -227,12 +234,15 @@ const Home = () => {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="flex flex-wrap gap-4 md:gap-6 pt-6"
                         >
-                            <a href="/#/work" className="group relative px-6 md:px-8 py-3 md:py-4 bg-black text-white font-bold uppercase tracking-widest text-[10px] md:text-xs overflow-hidden text-center">
-                                <span className="relative z-10 group-hover:text-black transition-colors duration-300">View Projects</span>
+                            <a href="/#/contact" className="group relative px-6 md:px-8 py-3 md:py-4 bg-black text-white font-bold uppercase tracking-widest text-[10px] md:text-xs overflow-hidden text-center">
+                                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Book Intro Call</span>
                                 <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
                             </a>
-                            <a href="/#/contact" className="group px-6 md:px-8 py-3 md:py-4 border border-black text-black font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-black hover:text-white transition-all duration-300 text-center">
-                                Let's Talk
+                            <a href="/Prasad_kadam.pdf" target="_blank" rel="noopener noreferrer" className="group px-6 md:px-8 py-3 md:py-4 border border-black text-black font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-black hover:text-white transition-all duration-300 text-center">
+                                Download Resume
+                            </a>
+                            <a href="/#/work" className="group px-6 md:px-8 py-3 md:py-4 border border-neutral-200 text-neutral-700 font-bold uppercase tracking-widest text-[10px] md:text-xs hover:border-black hover:text-black transition-all duration-300 text-center">
+                                View Projects
                             </a>
                         </motion.div>
                     </div>
@@ -241,6 +251,23 @@ const Home = () => {
                         <div className="absolute -inset-4 bg-gradient-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
                         <TerminalWindow />
                     </div>
+                </div>
+            </section>
+
+            {/* HR & Availability Snapshot */}
+            <section className="py-12 md:py-16 px-6 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    {QUICK_FACTS.map((fact) => (
+                        <div key={fact.label} className="p-4 md:p-5 bg-white border border-neutral-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 flex items-start gap-3">
+                            <div className="mt-0.5 text-neutral-500">
+                                {fact.icon}
+                            </div>
+                            <div>
+                                <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-neutral-400 font-bold mb-1">{fact.label}</p>
+                                <p className="text-sm md:text-base text-neutral-800 font-semibold leading-snug">{fact.value}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -444,12 +471,93 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Contact / Hiring */}
+            <section id="contact" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
+                    <div className="space-y-6">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Ready to Hire</p>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight uppercase leading-[1.05]">Let's ship your next release</h2>
+                        <p className="text-base md:text-xl text-neutral-600 leading-relaxed">
+                            I build production React/TypeScript frontends and Node.js/Express APIs with JWT auth, Zod validation, and tuned MongoDB/PostgreSQL queries. Currently at VIZIPP; open to full-time roles and freelance/contract work. I reply within one business day.
+                        </p>
+                        <div className="flex flex-wrap gap-2 md:gap-3 text-sm md:text-base text-neutral-700">
+                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Frontend: React, Next.js, Angular</span>
+                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Backend: Node.js, Express, REST, JWT</span>
+                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Databases: MongoDB, PostgreSQL, MySQL</span>
+                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Collaboration: Git/GitHub, Postman, CI/CD (learning)</span>
+                        </div>
+                    </div>
+
+                    <div className="bg-white border border-neutral-200 rounded-2xl shadow-xl p-6 md:p-8 space-y-6 w-full">
+                        <div className="flex items-center gap-3">
+                            <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
+                            <p className="text-sm font-mono text-neutral-500">Taking new engagements now</p>
+                        </div>
+
+                        <div className="space-y-4">
+                            <a href="mailto:prasadkadam29503@gmail.com" className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border border-neutral-200 rounded-xl hover:border-black hover:shadow-md transition-all">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-neutral-100 rounded-lg"><Mail size={18} /></div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">Email</p>
+                                        <p className="text-neutral-900 font-semibold break-words">prasadkadam29503@gmail.com</p>
+                                    </div>
+                                </div>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400">Reply &lt;24h</span>
+                            </a>
+
+                            <a href="tel:+918055907280" className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border border-neutral-200 rounded-xl hover:border-black hover:shadow-md transition-all">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-neutral-100 rounded-lg"><Phone size={18} /></div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">Call</p>
+                                        <p className="text-neutral-900 font-semibold">+91 80559 07280</p>
+                                    </div>
+                                </div>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400">IST</span>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/prasadkadam03/" target="_blank" rel="noreferrer" className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border border-neutral-200 rounded-xl hover:border-black hover:shadow-md transition-all">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-neutral-100 rounded-lg"><ExternalLink size={18} /></div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">LinkedIn</p>
+                                        <p className="text-neutral-900 font-semibold break-words">linkedin.com/in/prasadkadam03</p>
+                                    </div>
+                                </div>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400">Open</span>
+                            </a>
+
+                            <a href="https://github.com/prasadkadam03" target="_blank" rel="noreferrer" className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 border border-neutral-200 rounded-xl hover:border-black hover:shadow-md transition-all">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-neutral-100 rounded-lg"><Github size={18} /></div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">GitHub</p>
+                                        <p className="text-neutral-900 font-semibold break-words">github.com/prasadkadam03</p>
+                                    </div>
+                                </div>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-400">Open Source</span>
+                            </a>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                            <a href="/#/pricing" className="px-5 py-3 bg-black text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-lg hover:scale-[1.02] transition-transform">
+                                View Pricing / Rates
+                            </a>
+                            <a href="/Prasad_kadam.pdf" target="_blank" rel="noopener noreferrer" className="px-5 py-3 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.2em] text-[11px] rounded-lg hover:border-black">
+                                Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Pricing Section CTA */}
             <section className="py-24 md:py-40 px-6 max-w-7xl mx-auto bg-neutral-50 border-y border-neutral-200">
                 <div className="text-center">
                     <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter mb-6 md:mb-8">Pricing</h2>
                     <p className="text-lg md:text-xl text-neutral-500 font-light max-w-2xl mx-auto mb-10 md:mb-12">
-                        Choose a package or outline your scope for a custom quote.
+                        Open to full-time offers, long-term contracts, and scoped freelance work. Share your scope to get a tailored rate card.
                     </p>
                     <a href="#/pricing" className="inline-block px-8 md:px-12 py-4 md:py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-xs md:text-sm hover:scale-105 transition-transform shadow-2xl">
                         View Rate Card
