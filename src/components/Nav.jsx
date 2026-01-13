@@ -60,7 +60,7 @@ const Nav = () => {
     };
 
     return (
-        <nav className="fixed top-0 w-full z-10000 bg-white/60 border-b border-black/10 backdrop-blur-xs backdrop-saturate-150 shadow-card">
+        <nav className="fixed top-0 w-full z-10000 bg-white border-b border-black/5">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <Link to="/" onClick={() => setIsOpen(false)} className="font-mono font-bold text-black tracking-widest text-lg uppercase flex items-center gap-2 z-70">
                     <div className="relative flex h-2 w-2">
@@ -75,7 +75,7 @@ const Nav = () => {
                         <a
                             key={item.name}
                             href={`/#/${item.id}`}
-                            className="font-bold uppercase text-gray-700 tracking-[0.2em] hover:text-black transition-colors relative group py-2"
+                            className="font-bold uppercase tracking-[0.2em] hover:text-black transition-colors relative group py-2"
                         >
                             {item.name}
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
