@@ -192,7 +192,7 @@ const Home = () => {
         <>
             {/* Hero Section */}
             <section className="min-h-screen pt-24 md:pt-40 flex items-center relative px-6 max-w-7xl mx-auto">
-                <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center w-full">
+                <div className="grid lg:grid-cols-2 gap-12 md:gap-15 items-center w-full">
                     <div className="space-y-8 md:space-y-10 relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -254,7 +254,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* HR & Availability Snapshot */}
             <section className="py-12 md:py-16 px-6 max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {QUICK_FACTS.map((fact) => (
@@ -472,7 +471,7 @@ const Home = () => {
             </section>
 
             {/* Contact / Hiring */}
-            <section id="contact" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+            <section id="contact" className="py-24 md:py-32 px-1 md:px-6 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
                     <div className="space-y-6">
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Ready to Hire</p>
@@ -481,14 +480,14 @@ const Home = () => {
                             I build production React/TypeScript frontends and Node.js/Express APIs with JWT auth, Zod validation, and tuned MongoDB/PostgreSQL queries. Currently at VIZIPP; open to full-time roles and freelance/contract work. I reply within one business day.
                         </p>
                         <div className="flex flex-wrap gap-2 md:gap-3 text-sm md:text-base text-neutral-700">
-                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Frontend: React, Next.js, Angular</span>
-                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Backend: Node.js, Express, REST, JWT</span>
-                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Databases: MongoDB, PostgreSQL, MySQL</span>
-                            <span className="px-3 py-2 rounded-full bg-neutral-100 border border-neutral-200">Collaboration: Git/GitHub, Postman, CI/CD (learning)</span>
+                            <span className="px-3 py-2 rounded-xl bg-neutral-100 border border-neutral-200">Frontend: React, Next.js, Angular</span>
+                            <span className="px-3 py-2 rounded-xl bg-neutral-100 border border-neutral-200">Backend: Node.js, Express, REST, JWT</span>
+                            <span className="px-3 py-2 rounded-xl bg-neutral-100 border border-neutral-200">Databases: MongoDB, PostgreSQL, MySQL</span>
+                            <span className="px-3 py-2 rounded-xl bg-neutral-100 border border-neutral-200">Collaboration: Git/GitHub, Postman, CI/CD (learning)</span>
                         </div>
                     </div>
 
-                    <div className="bg-white border border-neutral-200 rounded-2xl shadow-xl p-6 md:p-8 space-y-6 w-full">
+                    <div className="bg-white border border-neutral-200 rounded-2xl shadow-xl p-4 md:p-8 space-y-6 w-full">
                         <div className="flex items-center gap-3">
                             <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
                             <p className="text-sm font-mono text-neutral-500">Taking new engagements now</p>
