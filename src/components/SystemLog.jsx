@@ -16,55 +16,26 @@ const SystemLog = () => {
     useEffect(() => {
         // Log interval
         const messages = [
-            "INITIALIZING REACT KERNEL...",
-            "LOADING ASSETS... (and my hopes and dreams)",
-            "CONNECTING TO API GATEWAY... *fingers crossed*",
-            "OPTIMIZING DOM TREE... (it's more of a bush really)",
-            "VERIFYING SECURITY CREDENTIALS... trust issues much?",
-            "ESTABLISHING HANDSHAKE... 🤝 nice to meet you",
-            "RENDERING SHADERS... making things shiny ✨",
-            "SYSTEM OPERATIONAL... surprisingly!",
-            "MONITORING NETWORK TRAFFIC... beep boop 🚗",
-            "UPDATING VIEWPORT COORDINATES... x marks the spot",
-            "GARBAGE COLLECTION STARTED... taking out the trash 🗑️",
-            "ALLOCATING MEMORY BLOCKS... like Tetris but worse",
-            "COMPILING SASS... the sassy kind 💅",
-            "DEBUGGING BUGS... ironic, isn't it? 🐛",
-            "CAFFEINATING DEVELOPER... ☕ critical process",
-            "DEPLOYING HOTFIX... it's getting hot in here 🔥",
-            "REFACTORING CODE... again... and again...",
-            "PUSHING TO PRODUCTION... YOLO mode activated",
-            "STACK OVERFLOW CONSULTED... as tradition demands",
-            "SEMICOLON MISSING... just kidding, we use JS",
-            "404 ERROR NOT FOUND... wait, what?",
-            "TURNING IT OFF AND ON AGAIN... classic move",
-            "BLAMING CACHE... when in doubt 🤷",
-            "COMMITTING CRIMES... I mean commits 📝",
-            "BAS KAR PAGLE... rulayega kya? 😭",
-            "CHAI BREAK INITIATED... ☕ zaruri hai bhai",
-            "CODE CHAL GAYA... matlab miracle ho gaya! 🎉",
-            "BUG FIX HO GAYA... ab toh party banti hai 🎊",
-            "DEPLOYMENT CHALRI HAI... Bhagwan bharose 🙏",
-            "JUGAAD MODE ACTIVATED... desi style! 💪",
-            "INTERNET SLOW HAI... Jio fiber kab aayega? 🐌",
-            "CLIENT KA CALL AAYA... ab kya chahiye? 📞",
-            "DEADLINE KAL HAI... tension lene ka nahi 😎",
-            "YEH BHAI YEH... code chal gaya! 🎯",
-            "APNA TIME AAYEGA... deployment pending 🚀",
-            "MUMMY KASAM... bug fix kar dunga 🤞",
-            "ARRE BHAI BHAI BHAI... error aa gaya 😱",
-            "THODA ADJUST KAR LE... responsive nahi hai 📱",
-            "SAHI HAI BHAI... test cases pass! ✅",
-            "KAAM KHATAM... PR ready for review 📋",
-            "ARRE YAR... merge conflict phir se 😤",
-            "FULL SAPOT BHAI... backend se 🤝",
-            "BINOD BINOD... console.log('BINOD') 😂",
-            "RASODE MEIN KAUN THA... debugging in progress 🔍",
-            "SYSTEM PE SYSTEM... baithara hai chhora jaat ka 🎶",
-            "AAYEIN?... error kahan se aaya? 🍆",
-            "GADDARI KORBE... code fat gaya 🗡️",
-            "MAZA AAYA... bug fix karke 😂",
-            "KHATAM TATA BYE BYE... deployment complete 👋"
+            "ASSEMBLING THE FRONTEND... pixels, stay where I put you",
+            "POLLING THE DATABASE... 'Are we there yet?'",
+            "CENTERING THE DIV... this might take a while",
+            "SCOLDING THE CACHE... it's being stubborn again",
+            "CHECKING STACK OVERFLOW... for the 4th time this hour",
+            "IMPORTING WISDOM... from random NPM packages",
+            "ZOD VALIDATION IN PROGRESS... keeping the bad data out",
+            "OPTIMIZING MONGODB QUERIES... making them zoom 🏎️",
+            "REMOVING CONSOLE.LOGS... mostly the 'pls work' ones",
+            "RE-READING THE DOCS... because I skipped them the first time",
+            "NEGOTIATING WITH CSS... it's winning",
+            "SQUASHING BUGS... they have families, you know 🐛",
+            "GENERATING TYPESCRIPT ERRORS... for character building",
+            "DRINKING COFFEE... the real backend engine ☕",
+            "PUSHING TO PROD... hold your breath",
+            "GIT COMMIT -M 'FIX'... for the 10th time",
+            "CLEANING UP THE TRASH... Garbage Collector is on duty 🗑️",
+            "BYPASSING THE FIREWALL... legally, of course",
+            "IGNORING JAVASCRIPT WARNINGS... they're just suggestions",
+            "SYSTEM READY... (standard terms and conditions apply)"
         ];
 
         const logInterval = setInterval(() => {
@@ -99,7 +70,7 @@ const SystemLog = () => {
             style={{ opacity, scale }}
             className="w-full max-w-4xl mx-auto mt-10 md:mt-20 border border-white/20 bg-white/10 backdrop-blur-md font-mono text-[10px] text-neutral-700 shadow-xl rounded-lg overflow-hidden"
         >
-            <div className="flex border-b border-white/20 bg-gradient-to-r from-white/5 to-transparent px-3 md:px-4 py-2 justify-between items-center backdrop-blur-sm">
+            <div className="flex border-b border-white/20 bg-linear-to-r from-white/5 to-transparent px-3 md:px-4 py-2 justify-between items-center backdrop-blur-sm">
                 <div className="flex gap-4">
                     <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/50" />
@@ -114,8 +85,8 @@ const SystemLog = () => {
                 <div className="text-neutral-500 text-[8px] md:text-[10px] font-semibold">V.2.0.4</div>
             </div>
 
-            <div className="p-3 md:p-4 h-32 md:h-40 overflow-hidden relative bg-gradient-to-b from-white/5 to-white/10">
-                <div className="absolute inset-x-0 bottom-0 h-10 md:h-12 bg-gradient-to-t from-white/30 via-white/10 to-transparent pointer-events-none z-10" />
+            <div className="p-3 md:p-4 h-32 md:h-40 overflow-hidden relative bg-linear-to-b from-white/5 to-white/10">
+                <div className="absolute inset-x-0 bottom-0 h-10 md:h-12 bg-linear-to-t from-white/30 via-white/10 to-transparent pointer-events-none z-10" />
                 {logs.map((log, i) => (
                     <motion.div
                         key={i}

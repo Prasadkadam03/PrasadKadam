@@ -60,9 +60,9 @@ const Nav = () => {
     };
 
     return (
-        <nav className="fixed top-0 w-full z-[10000] bg-white border-b border-black/5">
+        <nav className="fixed top-0 w-full z-10000 bg-white border-b border-black/5">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                <Link to="/" onClick={() => setIsOpen(false)} className="font-mono font-bold text-black tracking-widest text-lg uppercase flex items-center gap-2 z-[70]">
+                <Link to="/" onClick={() => setIsOpen(false)} className="font-mono font-bold text-black tracking-widest text-lg uppercase flex items-center gap-2 z-70">
                     <div className="w-3 h-3 bg-black rounded-full animate-pulse" />
                     Prasad Kadam
                 </Link>
@@ -76,19 +76,19 @@ const Nav = () => {
                             className="font-bold uppercase tracking-[0.2em] hover:text-black transition-colors relative group py-2"
                         >
                             {item.name}
-                            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full" />
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
                     <Link to="/pricing" className="hover:text-black transition-colors relative group py-2 text-green-600 font-bold uppercase tracking-[0.2em]">
                         Pricing
-                        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-green-600 transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full" />
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
                     onClick={toggleMenu}
-                    className={`md:hidden p-2 z-[100] transition-colors rounded-lg flex items-center gap-2 ${isOpen ? 'text-white hover:bg-white/10' : 'text-black hover:bg-neutral-100'}`}
+                    className={`md:hidden p-2 z-100 transition-colors rounded-lg flex items-center gap-2 ${isOpen ? 'text-white hover:bg-white/10' : 'text-black hover:bg-neutral-100'}`}
                     aria-label="Toggle Menu"
                 >
                     <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:block">
@@ -120,14 +120,14 @@ const Nav = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[80] md:hidden"
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-80 md:hidden"
                         />
                         <motion.div
                             variants={menuVariants}
                             initial="closed"
                             animate="open"
                             exit="closed"
-                            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black z-[90] md:hidden p-8 flex flex-col shadow-2xl border-l border-white/10"
+                            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black z-90 md:hidden p-8 flex flex-col shadow-2xl border-l border-white/10"
                         >
                             <div className="flex flex-col h-full overflow-y-auto">
                                 <div className="text-neutral-500 text-[10px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-3 shrink-0">

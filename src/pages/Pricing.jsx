@@ -79,8 +79,8 @@ const Pricing = () => {
                                 <span className={`text-3xl md:text-4xl font-display font-bold ${plan.price === 'Custom' ? 'text-black' : 'text-green-600'}`}>{plan.price}</span>
                                 {plan.unit && <span className="text-neutral-500 text-xs md:text-sm">{plan.unit}</span>}
                             </div>
-                            <p className="text-neutral-500 font-light mb-8 text-sm min-h-[40px]">{plan.description}</p>
-                            <ul className="space-y-4 mb-8 flex-grow">
+                            <p className="text-muted font-light mb-8 text-sm min-h-10">{plan.description}</p>
+                            <ul className="space-y-4 mb-8 grow">
                                 {plan.features.map((feature, fIdx) => (
                                     <li key={fIdx} className="flex items-center gap-3 text-sm font-mono text-neutral-600">
                                         <div className={`w-1.5 h-1.5 rounded-full ${plan.price === 'Custom' ? 'bg-black' : 'bg-green-500'}`} />

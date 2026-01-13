@@ -248,7 +248,7 @@ const Home = () => {
                     </div>
 
                     <div className="relative pb-12 lg:pb-0">
-                        <div className="absolute -inset-4 bg-gradient-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
+                        <div className="absolute -inset-4 bg-linear-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
                         <TerminalWindow />
                     </div>
                 </div>
@@ -302,7 +302,7 @@ const Home = () => {
 
             {/* Experience Section */}
             <section id="experience" className="py-24 md:py-40 bg-black text-white px-6 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px] opacity-20" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -344,7 +344,7 @@ const Home = () => {
                 <SectionHeading title="Delivery Workflow" subtitle="How I take React/Node ideas from notes to deployed, stable releases." centered />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative mt-16 md:mt-20">
-                    <div className="hidden md:block absolute top-12 left-0 w-full h-[2px] bg-neutral-100 z-0" />
+                    <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-neutral-100 z-0" />
                     {PROCESS_STEPS.map((step, i) => (
                         <motion.div
                             key={i}
@@ -420,7 +420,7 @@ const Home = () => {
                             </div>
 
                             <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 uppercase leading-none">{project.title}</h3>
-                            <p className="text-sm md:text-base text-neutral-500 mb-8 flex-grow font-light leading-relaxed">{project.description}</p>
+                            <p className="text-sm md:text-base text-neutral-500 mb-8 grow font-light leading-relaxed">{project.description}</p>
 
                             <div className="flex flex-wrap gap-2 mb-8 md:mb-10">
                                 {project.tags.map(tag => (
