@@ -160,6 +160,16 @@ const SERVICES = [
         icon: <Code2 size={24} />
     },
     {
+        title: "Web App Development",
+        description: "Full-stack web builds from landing pages to dashboards, wired with forms, auth, and integrations.",
+        icon: <Layers size={24} />
+    },
+    {
+        title: "Full-Stack Delivery",
+        description: "React/Next.js frontends paired with Node/Express APIs, JWT, Zod validation, and CI-ready workflows.",
+        icon: <Rocket size={24} />
+    },
+    {
         title: "API + Auth Development",
         description: "Express.js REST APIs with JWT authentication, server-side validation, and predictable error handling.",
         icon: <ShieldCheck size={24} />
@@ -168,6 +178,11 @@ const SERVICES = [
         title: "Data Modeling & Delivery",
         icon: <Server size={24} />,
         description: "MongoDB/PostgreSQL schemas via Mongoose or Prisma, tuned queries, and deploys on Vercel/Cloudflare Workers."
+    },
+    {
+        title: "App & Platform Launch",
+        description: "Performance-checked deployments, observability hooks, and release support for web and edge apps.",
+        icon: <Globe size={24} />
     }
 ];
 
@@ -225,7 +240,7 @@ const Home = () => {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="text-lg md:text-2xl text-neutral-600 max-w-xl font-light leading-relaxed border-l-2 border-black pl-6"
                         >
-                            Full Stack Developer at VIZIPP delivering React/TypeScript frontends and Node.js/Express APIs with JWT security, Zod validation, and tuned queries across MongoDB, PostgreSQL, and MySQL. Open to full-time roles and freelance/contract projects.
+                            Full Stack Developer delivering React/TypeScript frontends and Node.js/Express APIs with JWT security, Zod validation, and tuned queries across MongoDB, PostgreSQL, and MySQL. Open to full-time roles and freelance/contract projects.
                         </motion.p>
 
                         <motion.div
@@ -480,7 +495,7 @@ const Home = () => {
                             Let's ship your next release
                         </h2>
                         <p className="text-base md:text-xl text-neutral-600 leading-relaxed max-w-2xl">
-                            I build production React/TypeScript frontends and Node.js/Express APIs with JWT auth, Zod validation, and tuned MongoDB/PostgreSQL queries. Currently at VIZIPP; open to full-time roles and freelance/contract work. I reply within one business day.
+                            I build production React/TypeScript frontends and Node.js/Express APIs with JWT auth, Zod validation, and tuned MongoDB/PostgreSQL queries. Open to full-time roles and freelance/contract work. I reply within one business day.
                         </p>
 
                         <div className="flex flex-wrap gap-2 md:gap-3 text-xs md:text-sm text-neutral-700">
