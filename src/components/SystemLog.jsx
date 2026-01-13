@@ -73,7 +73,7 @@ const SystemLog = () => {
             <div className="flex border-b border-white/20 bg-linear-to-r from-white/5 to-transparent px-3 md:px-4 py-2 justify-between items-center backdrop-blur-sm">
                 <div className="flex gap-4">
                     <div className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/50" />
+                        <div className="w-1.5 h-1.5 md:w-2 md:h-2  bg-green-400 animate-pulse shadow-lg shadow-green-400/50" />
                         <span className="font-bold tracking-widest uppercase text-[8px] md:text-[10px] text-neutral-800">System Status: ONLINE</span>
                     </div>
                     <div className="hidden md:flex gap-4 text-neutral-600">

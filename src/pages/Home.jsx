@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import {
-    Code2, Layers, Rocket, Search, Briefcase, ExternalLink, Github, Globe, ShieldCheck, Server, Phone, Mail, Clock
+    Code2, Layers, Rocket, Search, ExternalLink, Github, Globe, ShieldCheck, Server, Phone, Mail, Clock,
+    BriefcaseBusiness,
+    BriefcaseBusinessIcon
 } from 'lucide-react';
 
 import TerminalWindow from '../components/TerminalWindow';
@@ -28,19 +30,19 @@ const PROJECTS = [
         featured: false
     },
     {
-        title: "Tirupati Mobile Shop",
-        description: "Angular 17 site for a mobile shop showcasing products and services with lazy-loaded modules and EmailJS-powered inquiries.",
-        tags: ["Angular", "TypeScript", "Lazy Loading", "EmailJS", "Responsive UI"],
-        github: "https://github.com/Prasadkadam03/Tirupati_Mobiles",
-        demo: "https://tirupatimobiles.netlify.app/",
-        featured: false
-    },
-    {
         title: "BookAtlas",
         description: "API-driven search experience using Open Library data with reusable components, Vite HMR, and Vercel deployment.",
         tags: ["React", "TypeScript", "Vite", "TailwindCSS", "API"],
         github: "https://github.com/prasadkadam03/BookAtlas",
         demo: "https://book-atlas.vercel.app/",
+        featured: false
+    },
+    {
+        title: "Tirupati Mobile Shop",
+        description: "Angular 17 site for a mobile shop showcasing products and services with lazy-loaded modules and EmailJS-powered inquiries.",
+        tags: ["Angular", "TypeScript", "Lazy Loading", "EmailJS", "Responsive UI"],
+        github: "https://github.com/Prasadkadam03/Tirupati_Mobiles",
+        demo: "https://tirupatimobiles.netlify.app/",
         featured: false
     },
     {
@@ -111,7 +113,7 @@ const PROCESS_STEPS = [
 ];
 
 const QUICK_FACTS = [
-    { label: "Current Role", value: "Junior Developer @ VIZIPP", icon: <Briefcase size={16} /> },
+    { label: "Current Role", value: "Junior Developer @ VIZIPP", icon: <BriefcaseBusiness size={16} /> },
     { label: "Location", value: "Nashik, India (IST)", icon: <Globe size={16} /> },
     { label: "Availability", value: "Open to full-time & freelance contracts", icon: <Rocket size={16} /> },
     { label: "Response Time", value: "Replies within 24 hours", icon: <Clock size={16} /> }
@@ -130,12 +132,6 @@ const EXPERIENCE = [
         period: "Apr 2025 – Sep 2025",
         description: "Shipped 10+ responsive React/Angular components, 8+ REST endpoints, and CRUD flows with Mongoose models. Improved average endpoint latency by ~25% on high-traffic routes."
     },
-    {
-        company: "SNJB’s KBJ College of Engineering",
-        role: "B.Tech in Computer Engineering (Pune University)",
-        period: "Dec 2021 – May 2025",
-        description: "Computer Engineering graduate focused on building web products in parallel with academics. Based in Nashik, India."
-    }
 ];
 
 const FAQS = [
@@ -343,7 +339,7 @@ const Home = () => {
                                 </div>
                                 <div className="md:col-span-9">
                                     <h3 className="text-2xl md:text-3xl font-display font-bold uppercase mb-2">{exp.company}</h3>
-                                    <h4 className="text-lg md:text-xl text-neutral-400 mb-4 md:mb-6 flex items-center gap-2"><Briefcase size={18} /> {exp.role}</h4>
+                                    <h4 className="text-lg md:text-xl text-neutral-400 mb-4 md:mb-6 flex items-center gap-2"><BriefcaseBusiness size={18} /> {exp.role}</h4>
                                     <p className="text-lg md:text-xl font-light text-neutral-500 max-w-3xl leading-relaxed group-hover:text-neutral-300 transition-colors">
                                         {exp.description}
                                     </p>
