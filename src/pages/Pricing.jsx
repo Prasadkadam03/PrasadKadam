@@ -54,7 +54,7 @@ const Pricing = () => {
         <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12 p-4 bg-green-50 border border-green-200 flex items-center justify-center gap-3 text-sm md:text-base text-green-800 rounded-lg"
+            className="mb-12 p-4 bg-green-50 border border-green-200 flex items-center justify-center gap-3 text-sm md:text-base text-green-800 "
         >
             <Info size={20} className="text-green-600" />
             <span className="font-bold uppercase tracking-wide">Early Bird Offer:</span>
@@ -71,6 +71,7 @@ const Pricing = () => {
                             className="p-6 md:p-8 border border-neutral-200 bg-white hover:border-black transition-colors flex flex-col"
                         >
                             <h3 className="text-base md:text-lg font-bold uppercase tracking-widest mb-4">{plan.title}</h3>
+                            <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 mb-2">Starts from</span>
                             <div className="mb-6 flex items-baseline gap-2">
                                 {plan.originalPrice && (
                                     <span className="text-neutral-400 line-through text-xs md:text-sm decoration-red-500/50">{plan.originalPrice}</span>
