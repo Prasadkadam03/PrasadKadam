@@ -4,10 +4,9 @@ import { useLocation } from 'react-router-dom';
 import {
     Code2, Layers, Rocket, Search, ExternalLink, Github, Globe, ShieldCheck, Server, Phone, Mail, Clock,
     BriefcaseBusiness,
-    BriefcaseBusinessIcon
 } from 'lucide-react';
 
-import TerminalWindow from '../components/TerminalWindow';
+import GPTWindow from '../components/GPTWindow';
 import SectionHeading from '../components/SectionHeading';
 import Footer from '../components/Footer';
 
@@ -260,7 +259,7 @@ const Home = () => {
 
                     <div className="relative pb-12 lg:pb-0">
                         <div className="absolute -inset-4 bg-linear-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
-                        <TerminalWindow />
+                        <GPTWindow />
                     </div>
                 </div>
             </section>
