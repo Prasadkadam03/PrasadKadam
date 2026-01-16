@@ -201,9 +201,9 @@ const Home = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="min-h-screen pt-24 md:pt-40 flex items-center relative px-6 max-w-7xl mx-auto">
+            <section className="min-h-screen pt-24 md:pt-40 flex items-center relative md:px-6 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-15 items-center w-full">
-                    <div className="space-y-8 md:space-y-10 relative z-10">
+                    <div className="space-y-8 md:space-y-10 md:px-0  px-6 relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -257,8 +257,8 @@ const Home = () => {
                         </motion.div>
                     </div>
 
-                    <div className="relative pb-12 lg:pb-0">
-                        <div className="absolute -inset-4 bg-linear-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-30 pointer-events-none" />
+                    <div className="relative pb-12 md:px-0 px-3 lg:pb-0">
+                        <div className="absolute -inset-4 bg-linear-to-tr from-neutral-200 to-transparent  blur-3xl opacity-30 pointer-events-none" />
                         <GPTWindow />
                     </div>
                 </div>
