@@ -566,7 +566,7 @@ const Home = () => {
 
                         {/* Action Buttons */}
                         <div className="grid grid-cols-1 gap-3 pt-2">
-                            <a href="https://drive.google.com/..." target="_blank" rel="noopener noreferrer" className="flex items-center justify-center px-6 py-4 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.15em] text-[11px] hover:border-black transition-colors text-center">
+                            <a href="https://drive.google.com/drive/folders/1GAf5XFtumVJgHiWj9p4yz45hB3_40kCt?usp=drive_link" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center px-6 py-4 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.15em] text-[11px] hover:border-black transition-colors text-center">
                                 Resume
                             </a>
                         </div>
