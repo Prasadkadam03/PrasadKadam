@@ -1,10 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-/**
- * 1) Your “knowledge base” (ATS/resume facts) — the bot should ONLY talk from here.
- * 2) Pricing is separate and ONLY used if user asks.
- */
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const PROFILE = {
   name: "Prasad Kadam",
@@ -84,25 +81,15 @@ const PROFILE = {
   ],
 };
 
-const PRICING = {
-  landing: { title: "Landing Page / Portfolio", start: "₹5,399", includes: ["React/Next.js + Tailwind UI", "Responsive & accessible layout", "Deployment to Vercel + domain guidance", "Essential SEO + analytics hooks", "3 revision loops"] },
-  mvp: { title: "Full Stack MVP", start: "₹7,399", includes: ["React/Next.js frontend", "Node.js/Express REST APIs + JWT", "Zod validation + error handling", "MongoDB or PostgreSQL setup (Mongoose/Prisma)", "Postman collection + API docs"] },
-  edge: { title: "Edge/Serverless App", start: "₹10,999", includes: ["Cloudflare Workers or Vercel functions", "JWT-protected routes + rate limiting", "Prisma/PostgreSQL or MongoDB", "CI/CD hooks", "Performance + observability checks"] },
-  enterprise: { title: "Enterprise Custom", start: "Custom", includes: ["High-availability architecture", "Enterprise cloud infra (AWS/GCP)", "Security & compliance audits", "Priority support"] },
-};
+const API_URL = import.meta.env.VITE_API_URL;
 
 /** ---------- helpers ---------- */
 
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-const includesAny = (text, words) => words.some((w) => text.includes(w));
 
 const detectIntent = (raw) => {
   const text = raw.toLowerCase();
 
-  // IMPORTANT: pricing must be explicit
-  const pricing = /(price|pricing|rate|cost|charges|fees|budget|quote|quotation)/.test(text);
-
-  if (pricing) return "pricing";
   if (/(hi|hello|hey|yo|good (morning|evening|afternoon))/.test(text)) return "greeting";
   if (/(hire|hiring|job|role|position|open to work|resume|cv|interview|notice)/.test(text)) return "hiring";
   if (/(stack|tech|skills|typescript|javascript|react|next|node|express|mongodb|postgres|sql|angular|tailwind)/.test(text)) return "tech";
@@ -113,7 +100,7 @@ const detectIntent = (raw) => {
 
 const extractSignals = (raw) => {
   const text = raw.toLowerCase();
-  const signals = {
+  return {
     wantsRemote: /(remote)/.test(text),
     wantsFullTime: /(full[-\s]?time|permanent|job)/.test(text),
     wantsFrontend: /(frontend|ui|ux|react|next)/.test(text),
@@ -122,21 +109,14 @@ const extractSignals = (raw) => {
     mentionsMongo: /(mongo)/.test(text),
     mentionsPostgres: /(postgres|postgresql)/.test(text),
   };
-  return signals;
 };
 
-/**
- * Resume-driven “fake GPT brain”
- * - Uses: intent, memory, and small “response library”
- * - Pricing only on intent === 'pricing'
- */
 const buildReply = ({ prompt, memory }) => {
   const intent = detectIntent(prompt);
   const signals = extractSignals(prompt);
   const userText = prompt.trim();
   const echo = userText && userText.length < 120 ? `You said: “${userText}”.\n\n` : "";
 
-  // Update memory (light, safe)
   const nextMemory = {
     ...memory,
     lastIntent: intent,
@@ -144,11 +124,10 @@ const buildReply = ({ prompt, memory }) => {
     lastUserMessage: userText,
   };
 
-  // --- Response templates (varied) ---
   const greeting = () =>
     pick([
-      `Hey 👋 I’m PrasadGPT.\nI’m ${PROFILE.title} (React/Next.js, Node/Express, MongoDB/PostgreSQL).\n\nAre you here for hiring, or do you want to talk about a project?`,
-      `Hi! 👋 I’m PrasadGPT — built from my real resume.\n\nAsk me about my experience, projects, tech stack, or role fit.`,
+      `Hey 👋 I’m **PrasadGPT**.\nI’m a **${PROFILE.title}** (React/Next.js, Node/Express, MongoDB/PostgreSQL).\n\nAre you here for **hiring**, or do you want to talk about a **project**?`,
+      `Hi! 👋 I’m **PrasadGPT** — built from my real resume.\n\nAsk me about **experience**, **projects**, **tech stack**, or **role fit**.`,
     ]);
 
   const hiring = () => {
@@ -160,12 +139,12 @@ const buildReply = ({ prompt, memory }) => {
 
     return (
       echo +
-      `Yes — I’m open to roles (freelancing is secondary).\n\n` +
-      `Quick fit summary (${focus}):\n` +
-      `• ${PROFILE.experience[0].company} — ${PROFILE.experience[0].role}\n` +
-      `• Built React/Angular UI components + Node/Express REST APIs\n` +
-      `• JWT auth + Zod validation + MongoDB/PostgreSQL\n` +
-      `• Improved API latency by ~25% on high-traffic routes\n\n` +
+      `Yes — I’m open to roles.\n\n` +
+      `**Quick fit summary (${focus}):**\n` +
+      `- ${PROFILE.experience[0].company} — ${PROFILE.experience[0].role}\n` +
+      `- Built React/Angular UI components + Node/Express REST APIs\n` +
+      `- JWT auth + Zod validation + MongoDB/PostgreSQL\n` +
+      `- Improved API latency by ~25% on high-traffic routes\n\n` +
       `If you paste a JD or tell me the stack + responsibilities, I’ll map my experience to it in a recruiter-friendly way.`
     );
   };
@@ -179,60 +158,43 @@ const buildReply = ({ prompt, memory }) => {
 
     return (
       echo +
-      `Here’s my core stack:\n` +
-      `• Frontend: ${PROFILE.skills.frontend.join(", ")}\n` +
-      `• Backend: ${PROFILE.skills.backend.join(", ")}\n` +
-      `• DB/Tools: ${PROFILE.skills.dbTools.join(", ")}\n\n` +
-      `If you want a project match, best example:\n` +
-      `• ${bestProject.name} (${bestProject.period}) — ${bestProject.stack.join(", ")}\n` +
+      `**Here’s my core stack:**\n` +
+      `- Frontend: ${PROFILE.skills.frontend.join(", ")}\n` +
+      `- Backend: ${PROFILE.skills.backend.join(", ")}\n` +
+      `- DB/Tools: ${PROFILE.skills.dbTools.join(", ")}\n\n` +
+      `**Best matching project:**\n` +
+      `- **${bestProject.name}** (${bestProject.period}) — ${bestProject.stack.join(", ")}\n` +
       `  - ${bestProject.bullets[0]}\n` +
       (bestProject.bullets[1] ? `  - ${bestProject.bullets[1]}\n` : "") +
-      `\nWant links to the live demo + GitHub for that one?`
+      `\nWant the **live demo + GitHub** links for that one?`
     );
   };
 
   const project = () => {
     const followups = [
-      "1) What are you building (1–2 lines)?",
-      "2) Who are the users?",
-      "3) Must-have features for v1?",
-      "4) Any deadline?",
-      "5) Do you prefer MongoDB or PostgreSQL (or you’re flexible)?",
+      "What are you building (1–2 lines)?",
+      "Who are the users?",
+      "Must-have features for v1?",
+      "Any deadline?",
+      "MongoDB or PostgreSQL (or flexible)?",
     ];
 
     return (
       echo +
-      `Nice — I can help you shape scope + architecture based on what I’ve shipped.\n\n` +
-      `To make this concrete, answer any 2–3:\n` +
-      followups.map((q) => `• ${q}`).join("\n") +
-      `\n\nThen I’ll reply with:\n• suggested v1 scope\n• recommended stack\n• milestones (what to build first)\n\n(And I’ll only discuss pricing if you ask.)`
+      `Nice — I can help you shape **scope + architecture** based on what I’ve shipped.\n\n` +
+      `Answer any 2–3:\n` +
+      followups.map((q) => `- ${q}`).join("\n") +
+      `\n\nThen I’ll reply with:\n- suggested v1 scope\n- recommended stack\n- milestones (what to build first)`
     );
   };
 
   const contact = () =>
-    `You can reach me here:\n\n` +
-    `• Email: ${PROFILE.email}\n` +
-    `• Location: ${PROFILE.location}\n` +
-    `• LinkedIn: ${PROFILE.links.linkedin}\n` +
-    `• GitHub: ${PROFILE.links.github}\n\n` +
-    `If you share the role + requirements, I can also draft a tight “why me” message you can send to recruiters.`;
-
-  // PRICING: strictly gated
-  const pricing = () => {
-    const blocks = [
-      `• ${PRICING.landing.title}: starts ${PRICING.landing.start}\n  - ${PRICING.landing.includes.join("\n  - ")}`,
-      `• ${PRICING.mvp.title}: starts ${PRICING.mvp.start}\n  - ${PRICING.mvp.includes.join("\n  - ")}`,
-      `• ${PRICING.edge.title}: starts ${PRICING.edge.start}\n  - ${PRICING.edge.includes.join("\n  - ")}`,
-      `• ${PRICING.enterprise.title}: ${PRICING.enterprise.start}\n  - ${PRICING.enterprise.includes.join("\n  - ")}`,
-    ].join("\n\n");
-
-    return (
-      echo +
-      `Sure — pricing (since you asked) 💰\n\n` +
-      blocks +
-      `\n\nIf you share scope + deadline, I’ll tell you which tier fits and what to ship in v1.`
-    );
-  };
+    `You can reach me through:\n\n` +
+    `- **Email:** ${PROFILE.email}\n` +
+    `- **Location:** ${PROFILE.location}\n` +
+    `- **LinkedIn:** [${PROFILE.links.linkedin}](${PROFILE.links.linkedin})\n` +
+    `- **GitHub:** [${PROFILE.links.github}](${PROFILE.links.github})\n\n` +
+    `I’m always open to opportunities (and yes, CSS centering still tests my patience 😅).`;
 
   const generic = () => {
     const nudge = pick([
@@ -241,15 +203,9 @@ const buildReply = ({ prompt, memory }) => {
       "Tell me what you need: role fit, tech stack, or project planning.",
     ]);
 
-    // IMPORTANT: do not mention pricing here
     return (
       echo +
-      `Got it.\n\n` +
-      `I can help with:\n` +
-      `• role fit (resume-based)\n` +
-      `• my tech stack & strongest projects\n` +
-      `• scoping your app into milestones\n\n` +
-      `${nudge}`
+      `Got it.\n\nI can help with:\n- role fit (resume-based)\n- my tech stack & strongest projects\n- scoping your app into milestones\n\n${nudge}`
     );
   };
 
@@ -259,15 +215,46 @@ const buildReply = ({ prompt, memory }) => {
   else if (intent === "tech") content = tech();
   else if (intent === "project") content = project();
   else if (intent === "contact") content = contact();
-  else if (intent === "pricing") content = pricing();
   else content = generic();
 
   return { content, nextMemory };
 };
 
-/** Streaming effect: feels like real GPT */
+const askBackend = async (question) => {
+  console.log("api called")
+  const response = await fetch(`${API_URL}/ask`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question }),
+  });
+
+  const rawText = await response.text();
+  let data = null;
+  try {
+    data = JSON.parse(rawText);
+  } catch {
+    // keep data null
+  }
+
+  if (!response.ok) {
+    const err = new Error(data?.error || `Request failed (${response.status})`);
+    err.status = response.status;
+    err.raw = data;
+    throw err;
+  }
+
+  if (!data?.answer) {
+    const err = new Error("No answer returned from backend");
+    err.status = response.status;
+    err.raw = data;
+    throw err;
+  }
+
+  return String(data.answer);
+};
+
+/** Streaming effect */
 const streamText = async ({ fullText, onChunk, speed = 12, chunkSize = 2 }) => {
-  // speed: ms per chunk (smaller = faster)
   let i = 0;
   while (i < fullText.length) {
     const next = fullText.slice(i, i + chunkSize);
@@ -282,17 +269,76 @@ const starterMessages = [
   {
     role: "ai",
     content:
-      "Hey, I’m PrasadGPT 👋\nI’m a Full Stack Developer (React/Next.js, Node/Express, MongoDB/PostgreSQL).\nAsk about hiring, my projects, or tech stack.",
+      "Hey, I’m **PrasadGPT** 👋\nI’m a Full Stack Developer (React/Next.js, Node/Express, MongoDB/PostgreSQL).\nAsk about hiring, my projects, or tech stack.",
+    meta: { tag: "" },
   },
-];
+] ;
+
+function classifyError(err) {
+  const msg = (err?.message || "").toLowerCase();
+  const status = err?.status;
+
+  // Network fetch error (backend down)
+  if (!status && (msg.includes("failed to fetch") || msg.includes("network") || msg.includes("cors"))) {
+    return "BACKEND DOWN";
+  }
+
+  // Common API overload / quota
+  if (status === 429 || msg.includes("quota") || msg.includes("rate") || msg.includes("too many")) {
+    return "RATE LIMITED";
+  }
+
+  // Token/context limit style errors
+  if (
+    msg.includes("token") ||
+    msg.includes("context") ||
+    msg.includes("maxoutputtokens") ||
+    msg.includes("too large") ||
+    msg.includes("resource_exhausted")
+  ) {
+    return "TOKEN LIMIT EXCEEDED";
+  }
+
+  return "AI DOWN";
+}
+
+/** Markdown renderer with safe link styling */
+const Markdown = ({ text }) => {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        a: ({ node, ...props }) => (
+          <a
+            {...props}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="underline font-bold wrap-break-word"
+          />
+        ),
+        ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 my-2" />,
+        ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 my-2" />,
+        li: ({ node, ...props }) => <li {...props} className="my-1" />,
+        p: ({ node, ...props }) => <p {...props} className="my-2 last:mb-0" />,
+        strong: ({ node, ...props }) => <strong {...props} className="font-black" />,
+        code: ({ node, ...props }) => (
+          <code {...props} className="px-1 py-0.5 border border-black bg-gray-50 text-[12px]" />
+        ),
+      }}
+    >
+      {text}
+    </ReactMarkdown>
+  );
+};
 
 const GPTWindow = () => {
   const [messages, setMessages] = useState(starterMessages);
   const [input, setInput] = useState("");
   const [isThinking, setIsThinking] = useState(false);
+  const [notice, setNotice] = useState(null);
+  const [pendingQuestion, setPendingQuestion] = useState(null);
   const scrollRef = useRef(null);
 
-  // memory makes it feel “aware” across turns
   const [memory, setMemory] = useState({
     lastIntent: null,
     lastUserMessage: "",
@@ -303,39 +349,86 @@ const GPTWindow = () => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, isThinking]);
 
+  // Handle API call + streaming via effect
+  useEffect(() => {
+    if (!pendingQuestion) return;
+    
+    let canceled = false;
+
+    const streamAnswer = async (fullText, metaUpdate) => {
+      let streamed = "";
+      await streamText({
+        fullText,
+        speed: 10,
+        chunkSize: 2,
+        onChunk: (chunk) => {
+          if (canceled) return;
+          streamed += chunk;
+          setMessages((prev) => {
+            const copy = [...prev];
+            const last = copy.length - 1;
+            copy[last] = {
+              ...copy[last],
+              content: streamed,
+              meta: { ...(copy[last]?.meta || {}), ...(metaUpdate || {}) },
+            };
+            return copy;
+          });
+        },
+      });
+    };
+
+    const run = async () => {
+      try {
+        const answer = await askBackend(pendingQuestion.question);
+        setNotice(null);
+        await streamAnswer(answer, { tag: "" });
+      } catch (err) {
+        const tag = classifyError(err);
+        const { content, nextMemory } = buildReply({
+          prompt: pendingQuestion.question,
+          memory: pendingQuestion.memorySnapshot,
+        });
+        setMemory(nextMemory);
+
+        const fallback =
+          `⚠️ **${tag}**\n\n` +
+          `Backend/AI isn’t available right now, so I’m replying in **offline mode** from my resume data:\n\n` +
+          content;
+
+        await streamAnswer(fallback, { tag });
+      } finally {
+        if (!canceled) {
+          setIsThinking(false);
+          setPendingQuestion(null);
+        }
+      }
+    };
+
+    run();
+
+    return () => {
+      canceled = true;
+    };
+  }, [pendingQuestion]);
+
   const handleSend = async () => {
     const trimmed = input.trim();
     if (!trimmed || isThinking) return;
 
-    setMessages((prev) => [...prev, { role: "user", content: trimmed }]);
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", content: trimmed, meta: {} },
+      { role: "ai", content: "", meta: { tag: "" } },
+    ]);
+
     setInput("");
     setIsThinking(true);
 
-    // Build reply (resume-driven, pricing gated)
-    const { content, nextMemory } = buildReply({ prompt: trimmed, memory });
-
-    // Add an empty AI message, then stream into it
-    const aiIndex = messages.length + 1; // approximate next index
-    setMessages((prev) => [...prev, { role: "ai", content: "" }]);
-
-    let streamed = "";
-    await streamText({
-      fullText: content,
-      speed: 10,
-      chunkSize: 2,
-      onChunk: (chunk) => {
-        streamed += chunk;
-        setMessages((prev) => {
-          const copy = [...prev];
-          // last message should be the AI message
-          copy[copy.length - 1] = { role: "ai", content: streamed };
-          return copy;
-        });
-      },
+    setPendingQuestion({
+      question: trimmed,
+      memorySnapshot: memory,
     });
-
-    setMemory(nextMemory);
-    setIsThinking(false);
   };
 
   return (
@@ -377,16 +470,33 @@ const GPTWindow = () => {
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[85%] px-4 py-3 border border-black font-medium text-sm leading-snug whitespace-pre-line ${
+                className={`max-w-[85%] px-4 py-3 border border-black font-medium text-sm leading-snug ${
                   msg.role === "user"
                     ? "bg-orange-50 text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                     : "bg-white text-black"
                 }`}
               >
-                <span className="block text-[10px] uppercase font-black mb-1 opacity-50">
-                  {msg.role === "user" ? "You" : "PrasadGPT"}
-                </span>
-                {msg.content}
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[10px] uppercase font-black opacity-50">
+                    {msg.role === "user" ? "You" : "PrasadGPT"}
+                  </span>
+
+                  {/* ✅ Error badge / tag */}
+                  {msg?.meta?.tag ? (
+                    <span className="text-[9px] uppercase font-black border border-black px-2 py-0.5 bg-white">
+                      {msg.meta.tag}
+                    </span>
+                  ) : null}
+                </div>
+
+                {/* ✅ Markdown for AI; plain for user */}
+                {msg.role === "ai" ? (
+                  <div className="text-[13px] leading-relaxed">
+                    <Markdown text={msg.content || ""} />
+                  </div>
+                ) : (
+                  <div className="whitespace-pre-wrap">{msg.content}</div>
+                )}
               </div>
             </motion.div>
           ))}
@@ -421,7 +531,11 @@ const GPTWindow = () => {
             onClick={handleSend}
             disabled={isThinking}
             className={`border border-black px-6 py-2 font-black uppercase text-sm transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-              ${isThinking ? "bg-gray-200 cursor-not-allowed" : "bg-orange-500 hover:bg-orange-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"}
+              ${
+                isThinking
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : "bg-orange-500 hover:bg-orange-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+              }
             `}
           >
             Send

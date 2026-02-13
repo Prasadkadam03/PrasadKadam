@@ -6,7 +6,6 @@ import Nav from './components/Nav';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import Home from './pages/Home';
-import Pricing from './pages/Pricing';
 
 const App = () => {
   return (
@@ -28,7 +27,6 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </div>

@@ -81,10 +81,6 @@ const Nav = () => {
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
-                    <Link to="/pricing" className="hover:text-black transition-colors relative group py-2 text-green-600 font-bold uppercase tracking-[0.2em]">
-                        Pricing
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full" />
-                    </Link>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -139,18 +135,6 @@ const Nav = () => {
 
                                 <div className="space-y-1 shrink-0">
                                     {navItems.map((item, i) => renderMobileLink(item, i))}
-                                    <motion.div variants={itemVariants}>
-                                        <Link
-                                            to="/pricing"
-                                            onClick={() => setIsOpen(false)}
-                                            className="group flex items-center justify-between py-5 border-b border-white/10"
-                                        >
-                                            <span className="text-2xl font-display font-bold uppercase tracking-tighter text-green-500 group-hover:text-green-400 transition-colors">
-                                                Pricing
-                                            </span>
-                                            <ArrowRight size={20} className="text-green-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
-                                        </Link>
-                                    </motion.div>
                                 </div>
 
                                 <div className="mt-auto pt-10 space-y-8 shrink-0">

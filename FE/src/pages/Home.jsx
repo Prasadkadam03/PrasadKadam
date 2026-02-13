@@ -565,28 +565,12 @@ const Home = () => {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                            <a href="/#/pricing" className="flex items-center justify-center px-6 py-4 bg-black text-white font-bold uppercase tracking-[0.15em] text-[11px]  hover:bg-neutral-800 transition-colors text-center">
-                                View Pricing
-                            </a>
+                        <div className="grid grid-cols-1 gap-3 pt-2">
                             <a href="https://drive.google.com/..." target="_blank" rel="noopener noreferrer" className="flex items-center justify-center px-6 py-4 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.15em] text-[11px] hover:border-black transition-colors text-center">
                                 Resume
                             </a>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Pricing Section CTA */}
-            <section className="py-24 md:py-40 px-6 max-w-7xl mx-auto bg-neutral-50 border-y border-neutral-200">
-                <div className="text-center">
-                    <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter mb-6 md:mb-8">Pricing</h2>
-                    <p className="text-lg md:text-xl text-neutral-500 font-light max-w-2xl mx-auto mb-10 md:mb-12">
-                        Open to full-time offers, long-term contracts, and scoped freelance work. Share your scope to get a tailored rate card.
-                    </p>
-                    <a href="#/pricing" className="inline-block px-8 md:px-12 py-4 md:py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-xs md:text-sm hover:scale-105 transition-transform shadow-2xl">
-                        View Rate Card
-                    </a>
                 </div>
             </section>
 
