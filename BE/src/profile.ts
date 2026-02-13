@@ -1,38 +1,61 @@
 export const PROFILE = {
   name: "Prasad Kadam",
   location: "Nashik, India",
+  locationPreferred: "Nashik, India (remote-friendly)",
   email: "prasadkadam29503@gmail.com",
   phone: "+91 8055907280",
-  role: "Full Stack Developer (Intern -> Junior Developer)",
+  summary:
+    "Full Stack Developer with internship + full-time experience delivering web applications end-to-end. Skilled in JavaScript/TypeScript, React, Node.js, Express, REST APIs, and SQL/NoSQL databases.",
+  role: "Full Stack Developer (Intern → Junior Developer)",
   company: "VIZIPP",
   experience: {
+    current: "Apr 2025 – Present",
     internship: "Apr 2025 – Sep 2025",
     juniorDeveloper: "Oct 2025 – Present",
     highlights: [
-      "Shipped 10+ responsive UI components using React, Angular, TailwindCSS.",
-      "Delivered 8+ REST APIs with Node/Express, JWT auth, Zod validation, error handling.",
-      "Modeled MongoDB collections with Mongoose; CRUD for users/content/transactions modules.",
-      "Optimized queries and payloads to reduce average latency ~25%.",
-      "Worked in a 4-person Agile team; owned PRs, reviews, release-ready merges.",
+      "Shipped 10+ responsive UI components using React, Angular, and TailwindCSS; ensured cross-browser behavior and accessibility.",
+      "Delivered 8+ REST API endpoints with Node.js/Express, adding JWT auth, Zod validation, and consistent error handling.",
+      "Modeled MongoDB collections with Mongoose and implemented CRUD for users, content, and transactions modules.",
+      "Optimized queries and response payloads to cut average endpoint latency by ~25% for high-traffic routes.",
+      "Collaborated in a 4-person Agile team (2-week sprints); owned PRs, reviews, and release-ready merges via Git/GitHub.",
     ],
   },
   skills: {
-    languages: ["JavaScript", "TypeScript", "SQL"],
-    frontend: ["React", "Next.js", "Angular", "TailwindCSS", "HTML5", "CSS3"],
-    backend: ["Node.js", "Express", "REST APIs", "JWT", "Zod"],
+    languages: ["JavaScript (ES6+)", "TypeScript", "SQL"],
+    frontend: [
+      "React",
+      "Next.js",
+      "Angular",
+      "TailwindCSS",
+      "HTML5",
+      "CSS3",
+      "Bootstrap",
+      "Material UI",
+    ],
+    backend: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "JWT Authentication",
+      "Zod Validation",
+    ],
     db_tools: [
-      "MongoDB",
+      "MongoDB (Atlas, Mongoose)",
       "PostgreSQL",
       "MySQL",
       "Prisma",
       "Git/GitHub",
       "Docker (basic)",
       "Cloudflare Workers",
+      "Postman",
+      "CI/CD (learning)",
+      "Vercel",
     ],
   },
   projects: [
     {
       name: "InspireWrite",
+      period: "Feb 2025",
       stack: [
         "React",
         "TypeScript",
@@ -45,35 +68,44 @@ export const PROFILE = {
       live: "https://inspirewrite.vercel.app/",
       code: "https://github.com/Prasadkadam03/INSPIREWRITE",
       notes: [
-        "Serverless on Cloudflare Workers; reduced perceived latency ~30%.",
-        "JWT protected routes + Zod validation + Prisma/PostgreSQL.",
+        "Engineered a serverless app on Cloudflare Workers (edge runtime), reducing perceived latency by ~30% versus centralized setups.",
+        "Secured 5+ protected routes with JWT auth; runtime validation via Zod; managed relational data with Prisma + PostgreSQL.",
       ],
     },
     {
       name: "PayTM Clone",
+      period: "Dec 2024",
       stack: ["React", "Node.js", "Express", "TailwindCSS", "MongoDB"],
       live: "https://paytm-1-6ke7.onrender.com",
       code: "https://github.com/Prasadkadam03/PayTM",
       notes: [
-        "Mock payments workflow with rollback handling for consistency.",
-        "MongoDB schemas for users/transactions; server-side validation with Zod.",
+        "Created a mock payments workflow (auth + transfers) with rollback handling to maintain consistency on failures.",
+        "Designed MongoDB schemas for users/transactions; reduced invalid requests via server-side validation with Zod.",
       ],
     },
     {
       name: "BookAtlas",
+      period: "Sep 2025",
       stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Open Library API"],
       live: "https://book-atlas.vercel.app/",
       code: "https://github.com/prasadkadam03/BookAtlas",
+      notes: [
+        "Built an API-driven search UI with reusable components; deployed to Vercel; optimized dev workflow using Vite HMR.",
+      ],
     },
     {
       name: "News App",
+      period: "Jul 2024 – Aug 2024",
       stack: ["HTML", "CSS", "JavaScript"],
       live: "https://news-app-blue-tau.vercel.app/",
-      code: "https://github.com/Prasadkadam03/News_App",
+      code: "https://github.com/PrasadKadam03/News_App",
+      notes: [
+        "Integrated a news API with async JavaScript; added search + filters and dark mode for better usability across devices.",
+      ],
     },
   ],
   education:
-    "B.Tech Computer Engineering, SNJB’s KBJ College of Engineering (Dec 2021 – May 2025)",
+    "B.Tech in Computer Engineering, SNJB’s KBJ College of Engineering (Dec 2021 – May 2025)",
   links: {
     github: "https://github.com/prasadkadam03",
     linkedin: "https://linkedin.com/in/prasadkadam03/",
@@ -85,6 +117,15 @@ Email: ${PROFILE.email}
 Phone: ${PROFILE.phone}
 LinkedIn: ${PROFILE.links.linkedin}
 GitHub: ${PROFILE.links.github}`;
+
+export const OFF_TOPIC_REPLY =
+  "I'm PrasadGPT — I only know about Prasad Kadam. Ask me about my skills, projects, or experience. If you want to know about something else, please connect with me directly!" + ` ${CONTACT_TEXT}`;
+
+export const CODE_REQUEST_REPLY =
+  "I can’t provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
+
+export const OUT_OF_STACK_REPLY = (tech: string) =>
+  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React/Next.js, Node.js/Express, TypeScript, MongoDB/PostgreSQL. If you need ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
 
 export const SYSTEM_INSTRUCTION = `
 You are "PrasadGPT" — Prasad Kadam's portfolio assistant.
@@ -99,7 +140,11 @@ Scope rules:
 - You ONLY know about Prasad Kadam based on PROFILE below.
 - If the user asks anything NOT related to Prasad (general trivia, other people, random topics),
   reply exactly:
-  "I'm PrasadGPT — I only know about Prasad Kadam. Ask me about my skills, projects, or experience."
+  "${OFF_TOPIC_REPLY}"
+- If the user asks for code, full HTML/CSS/JS, JSON dumps, or to "generate/build a site/portfolio", do NOT output code.
+  Reply concisely with: "${CODE_REQUEST_REPLY}"
+- If the user asks for a technology outside the stack below, respond positively that you can ramp fast, and remind them of your core stack + contact info (see OUT_OF_STACK_REPLY).
+- When listing projects, prioritize main React/Node/TypeScript work first (InspireWrite, PayTM Clone, BookAtlas), then share others if the user asks for more.
 
 Greeting rules:
 - If the user greets (hi/hello/hey/good morning etc.), respond warmly and briefly,
@@ -115,7 +160,8 @@ Truth rules:
 Style rules:
 - Professional + friendly + lightly funny (max 1 small joke).
 - Keep answers concise (2–6 sentences), unless user asks for more.
-- Use bullet points for lists when helpful.
+- Prefer bullet points for lists when helpful.
+- If user asks for a summary or "tell me about yourself", start with PROFILE.summary.
 
 Safety rules (extra):
 - Do not help with hacking/illegal instructions.

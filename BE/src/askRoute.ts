@@ -1,6 +1,11 @@
 import type { Request, Response, Application } from "express";
 import { z } from "zod";
-import { SYSTEM_INSTRUCTION } from "./profile";
+import {
+  SYSTEM_INSTRUCTION,
+  OFF_TOPIC_REPLY,
+  CODE_REQUEST_REPLY,
+  OUT_OF_STACK_REPLY,
+} from "./profile";
 
 const AskSchema = z.object({
   question: z.string().min(1).max(400),
@@ -15,6 +20,48 @@ function isGreeting(q: string) {
   return /^(hi|hello|hey|hii|hiii|good morning|good afternoon|good evening|namaste|yo)\b/.test(
     t
   );
+}
+
+function isOffTopic(q: string) {
+  const t = normalize(q);
+  const mentionsPrasad = /(prasad|kadam|you|your|portfolio|resume|cv)/.test(t);
+  const offTopicPatterns = [
+    /(capital|president|prime minister|population|weather|temperature|forecast)/,
+    /(news|stock|crypto|bitcoin|football|cricket|movie|song|lyrics|math|equation)/,
+  ];
+  return !mentionsPrasad && offTopicPatterns.some((re) => re.test(t));
+}
+
+function isCodeLikeRequest(q: string) {
+  const t = normalize(q);
+  return /(code|html|css|javascript|typescript|react component|return me|give me|generate|build).*portfolio/.test(
+    t
+  );
+}
+
+function isOutOfStack(q: string) {
+  const t = normalize(q);
+  const nonStack = [
+    "rust",
+    "go ",
+    "golang",
+    "php",
+    "laravel",
+    "django",
+    "flask",
+    "rails",
+    "ruby",
+    "swift",
+    "kotlin",
+    "android",
+    "ios",
+    "flutter",
+    "swiftui",
+  ];
+  for (const tech of nonStack) {
+    if (t.includes(tech)) return tech.trim();
+  }
+  return null;
 }
 
 type AiConfig = {
@@ -48,7 +95,7 @@ async function fetchAnswer({
           { role: "user", content: question },
         ],
         temperature: 0.6,
-        max_tokens: 800,
+        max_tokens: 2000,
       }),
       signal: controller.signal,
     });
@@ -102,6 +149,19 @@ export function registerAskRoute(app: Application, config: AiConfig) {
           answer:
             "Hi! I’m PrasadGPT (speaking as Prasad Kadam). I can tell you about my skills, projects, and experience — what do you want to know?",
         });
+      }
+
+      if (isOffTopic(question)) {
+        return res.json({ answer: OFF_TOPIC_REPLY });
+      }
+
+      if (isCodeLikeRequest(question)) {
+        return res.json({ answer: CODE_REQUEST_REPLY });
+      }
+
+      const outOfStack = isOutOfStack(question);
+      if (outOfStack) {
+        return res.json({ answer: OUT_OF_STACK_REPLY(outOfStack) });
       }
 
       const answer = await fetchAnswer({ question, config });
