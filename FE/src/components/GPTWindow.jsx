@@ -5,8 +5,9 @@ import remarkGfm from "remark-gfm";
 
 const PROFILE = {
   name: "Prasad Kadam",
-  title: "Full Stack Developer",
-  location: "Nashik, India (Remote-friendly)",
+  title: "Full Stack Developer (Intern → Junior Developer)",
+  location: "Nashik, India",
+  locationPreferred: "Nashik, India (remote-friendly)",
   email: "prasadkadam29503@gmail.com",
   links: {
     linkedin: "https://linkedin.com/in/prasadkadam03/",
@@ -21,7 +22,7 @@ const PROFILE = {
       role:
         "Full Stack Developer Intern (Apr 2025 — Sep 2025) → Junior Developer (Oct 2025 — Present)",
       highlights: [
-        "Shipped 10+ responsive UI components using React, Angular, and TailwindCSS with cross-browser and accessible UI patterns.",
+        "Shipped 10+ responsive UI components using React, Angular, and TailwindCSS; ensured cross-browser behavior and accessibility.",
         "Delivered 8+ REST API endpoints with Node.js/Express, adding JWT auth, Zod validation, and consistent error handling.",
         "Modeled MongoDB collections with Mongoose and implemented CRUD for users, content, and transactions modules.",
         "Optimized queries and response payloads to cut average endpoint latency by ~25% for high-traffic routes.",
@@ -33,7 +34,7 @@ const PROFILE = {
     languages: ["JavaScript (ES6+)", "TypeScript", "SQL"],
     frontend: ["React", "Next.js", "Angular", "TailwindCSS", "HTML5", "CSS3", "Bootstrap", "Material UI"],
     backend: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Zod Validation"],
-    dbTools: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Postman", "Docker (basic)", "Vercel", "Cloudflare Workers"],
+    dbTools: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma", "Git/GitHub", "Postman", "Docker (basic)", "Vercel", "Cloudflare Workers", "CI/CD (learning)"],
   },
   projects: [
     {
@@ -82,6 +83,12 @@ const PROFILE = {
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
+const OFF_TOPIC_REPLY =
+  "I'm PrasadGPT — I only know about Prasad Kadam. Ask me about my skills, projects, or experience.";
+const CODE_REQUEST_REPLY =
+  "I can’t provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
+const OUT_OF_STACK_REPLY = (tech) =>
+  `I haven’t used ${tech} yet, but I can ramp quickly. My core stack is React/Next.js, Node.js/Express, TypeScript, MongoDB/PostgreSQL. If the role needs ${tech}, I’m confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
 
 /** ---------- helpers ---------- */
 
@@ -218,6 +225,46 @@ const buildReply = ({ prompt, memory }) => {
   else content = generic();
 
   return { content, nextMemory };
+};
+
+const isOffTopic = (raw) => {
+  const t = raw.trim().toLowerCase();
+  const mentionsPrasad = /(prasad|kadam|you|your|portfolio|resume|cv)/.test(t);
+  const patterns = [
+    /(capital|president|prime minister|population|weather|temperature|forecast)/,
+    /(news|stock|crypto|bitcoin|football|cricket|movie|song|lyrics|math|equation)/,
+  ];
+  return !mentionsPrasad && patterns.some((re) => re.test(t));
+};
+
+const isCodeLikeRequest = (raw) => {
+  const t = raw.trim().toLowerCase();
+  return /(code|html|css|javascript|typescript|react component|return me|give me|generate|build).*portfolio/.test(t);
+};
+
+const isOutOfStack = (raw) => {
+  const t = raw.trim().toLowerCase();
+  const nonStack = [
+    "rust",
+    "go ",
+    "golang",
+    "php",
+    "laravel",
+    "django",
+    "flask",
+    "rails",
+    "ruby",
+    "swift",
+    "kotlin",
+    "android",
+    "ios",
+    "flutter",
+    "swiftui",
+  ];
+  for (const tech of nonStack) {
+    if (t.includes(tech)) return tech.trim();
+  }
+  return null;
 };
 
 const askBackend = async (question) => {
@@ -425,6 +472,35 @@ const GPTWindow = () => {
     setInput("");
     setIsThinking(true);
 
+    // Off-topic short-circuit (saves a backend call)
+    if (isOffTopic(trimmed)) {
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { role: "ai", content: OFF_TOPIC_REPLY, meta: {} },
+      ]);
+      setIsThinking(false);
+      return;
+    }
+
+    if (isCodeLikeRequest(trimmed)) {
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { role: "ai", content: CODE_REQUEST_REPLY, meta: {} },
+      ]);
+      setIsThinking(false);
+      return;
+    }
+
+    const outOfStack = isOutOfStack(trimmed);
+    if (outOfStack) {
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { role: "ai", content: OUT_OF_STACK_REPLY(outOfStack), meta: {} },
+      ]);
+      setIsThinking(false);
+      return;
+    }
+
     setPendingQuestion({
       question: trimmed,
       memorySnapshot: memory,
@@ -445,7 +521,6 @@ const GPTWindow = () => {
             <span className="relative inline-flex h-3 w-3 bg-black"></span>
           </div>
           <span className="font-black uppercase tracking-tighter text-lg">PrasadGPT</span>
-          <span className="font-extralight uppercase text-xs text-red-500">Under development....</span>
         </div>
         <div className="flex items-center gap-2 text-[10px] font-bold border border-black px-2 py-1 uppercase bg-white">
           <span>v1.0.4 — Live</span>
@@ -525,7 +600,7 @@ const GPTWindow = () => {
             }}
             rows={1}
             placeholder="Ask about hiring, projects, or tech stack..."
-            className="flex-1 border border-black p-3 text-sm font-bold uppercase placeholder:text-gray-400 focus:outline-none focus:bg-gray-50 resize-none"
+            className="flex-1 border border-black p-3 text-sm font-bold  placeholder:text-gray-400 focus:outline-none focus:bg-gray-50 resize-none"
           />
           <button
             onClick={handleSend}
