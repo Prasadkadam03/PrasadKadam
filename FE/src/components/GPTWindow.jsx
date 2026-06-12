@@ -5,66 +5,67 @@ import remarkGfm from "remark-gfm";
 
 const PROFILE = {
   name: "Prasad Kadam",
-  title: "Full Stack Developer (Intern → Junior Developer)",
+  title: "Full Stack Developer",
   location: "Nashik, India",
-  locationPreferred: "Nashik, India (remote-friendly)",
+  locationPreferred: "Nashik, India",
   email: "prasadkadam29503@gmail.com",
   links: {
     linkedin: "https://linkedin.com/in/prasadkadam03/",
     github: "https://github.com/prasadkadam03",
   },
   summary:
-    "Full Stack Developer with internship + full-time experience delivering web applications end-to-end. Skilled in JavaScript/TypeScript, React, Node.js, Express, REST APIs, and SQL/NoSQL databases.",
+    "Full Stack Developer with hands-on experience delivering web and mobile applications end-to-end. Skilled in JavaScript/TypeScript, React, React Native, Node.js, Next.js, Express, REST APIs, and SQL/NoSQL databases.",
   experience: [
     {
       company: "VIZIPP",
-      period: "Apr 2025 — Present",
-      role:
-        "Full Stack Developer Intern (Apr 2025 — Sep 2025) → Junior Developer (Oct 2025 — Present)",
+      period: "Apr 2025 - Present",
+      role: "Frontend Developer Intern -> Junior Developer",
       highlights: [
-        "Shipped 10+ responsive UI components using React, Angular, and TailwindCSS; ensured cross-browser behavior and accessibility.",
-        "Delivered 8+ REST API endpoints with Node.js/Express, adding JWT auth, Zod validation, and consistent error handling.",
-        "Modeled MongoDB collections with Mongoose and implemented CRUD for users, content, and transactions modules.",
-        "Optimized queries and response payloads to cut average endpoint latency by ~25% for high-traffic routes.",
-        "Worked in a 4-person Agile team (2-week sprints), owned PRs, reviews, and release-ready merges via Git/GitHub.",
+        "Developed 10+ responsive UI components using React, React Native, and TailwindCSS for VIZIPP products with strong accessibility and cross-browser support.",
+        "Enhanced Next.js applications with dynamic routing, SSR, and API integrations to improve performance and SEO.",
+        "Delivered 8+ REST API endpoints with Node.js/Express, JWT auth, Zod validation, and production-grade error handling.",
+        "Modeled MongoDB collections with Mongoose and optimized queries and response payloads to reduce endpoint latency by about 25%.",
+        "Built and maintained cross-platform mobile features with React Native at VIZIPP, connected to Node.js backend APIs.",
       ],
     },
   ],
   skills: {
     languages: ["JavaScript (ES6+)", "TypeScript", "SQL"],
-    frontend: ["React", "Next.js", "Angular", "TailwindCSS", "HTML5", "CSS3", "Bootstrap", "Material UI"],
+    frontend: ["React", "React Native", "Next.js", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"],
     backend: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Zod Validation"],
-    dbTools: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma", "Git/GitHub", "Postman", "Docker (basic)", "Vercel", "Cloudflare Workers", "CI/CD (learning)"],
+    dbTools: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"],
   },
   projects: [
     {
       name: "InspireWrite",
-      stack: ["React", "TypeScript", "Zod", "JWT", "Cloudflare Workers", "Prisma", "PostgreSQL"],
+      stack: ["React", "React Native", "TypeScript", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
       period: "Feb 2025",
       bullets: [
-        "Engineered a serverless app on Cloudflare Workers (edge runtime), reducing perceived latency by ~30% vs centralized setup.",
-        "Secured 5+ protected routes using JWT; enforced runtime validation using Zod; managed relational data via Prisma + PostgreSQL.",
+        "Engineered a serverless app on Cloudflare Workers (edge runtime), reducing perceived latency by about 30%.",
+        "Secured protected routes with JWT auth, enforced runtime validation with Zod, and managed relational data using Prisma plus PostgreSQL.",
+        "Implemented cross-platform mobile features in React Native that synced with backend APIs.",
       ],
       live: "https://inspirewrite.vercel.app/",
       code: "https://github.com/Prasadkadam03/INSPIREWRITE",
     },
     {
       name: "PayTM Clone",
-      stack: ["React", "Node.js", "Express", "TailwindCSS", "MongoDB"],
+      stack: ["React", "React Native", "Node.js", "Express", "TailwindCSS", "MongoDB", "Zod"],
       period: "Dec 2024",
       bullets: [
-        "Created a mock payments workflow (auth + transfers) with rollback handling for consistency on failures.",
-        "Designed MongoDB schemas for users/transactions; reduced invalid requests via server-side validation with Zod.",
+        "Created a mock payments workflow with auth, transfers, and rollback handling for data consistency.",
+        "Designed MongoDB schemas for users and transactions, validated inputs with Zod, and connected mobile features to backend APIs.",
       ],
       live: "https://paytm-1-6ke7.onrender.com",
       code: "https://github.com/Prasadkadam03/PayTM",
     },
     {
       name: "BookAtlas",
-      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Open Library API"],
+      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Next.js", "Open Library API"],
       period: "Sep 2025",
       bullets: [
-        "Built an API-driven search UI with reusable components; deployed to Vercel; optimized dev workflow via Vite HMR.",
+        "Built an API-driven search UI with reusable components and deployed it to Vercel.",
+        "Optimized the development workflow with Vite HMR and improved SEO and performance using Next.js features.",
       ],
       live: "https://book-atlas.vercel.app/",
       code: "https://github.com/prasadkadam03/BookAtlas",
@@ -72,9 +73,9 @@ const PROFILE = {
     {
       name: "News App",
       stack: ["HTML", "CSS", "JavaScript"],
-      period: "Jul 2024 — Aug 2024",
+      period: "Jul 2024 - Aug 2024",
       bullets: [
-        "Integrated a news API with async JS; added search + filters and dark mode for better usability across devices.",
+        "Integrated a news API with async JavaScript and added search, filters, and dark mode for better usability across devices.",
       ],
       live: "https://news-app-blue-tau.vercel.app/",
       code: "https://github.com/Prasadkadam03/News_App",
@@ -84,13 +85,11 @@ const PROFILE = {
 
 const API_URL = import.meta.env.VITE_API_URL;
 const OFF_TOPIC_REPLY =
-  "I'm PrasadGPT — I only know about Prasad Kadam. Ask me about my skills, projects, or experience.";
+  "I'm PrasadGPT - I only know about Prasad Kadam. Ask me about my skills, projects, or experience.";
 const CODE_REQUEST_REPLY =
-  "I can’t provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
+  "I can't provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
 const OUT_OF_STACK_REPLY = (tech) =>
-  `I haven’t used ${tech} yet, but I can ramp quickly. My core stack is React/Next.js, Node.js/Express, TypeScript, MongoDB/PostgreSQL. If the role needs ${tech}, I’m confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
-
-/** ---------- helpers ---------- */
+  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React, React Native, Next.js, Node.js/Express, TypeScript, and MongoDB/PostgreSQL. If the role needs ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
 
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -99,9 +98,9 @@ const detectIntent = (raw) => {
 
   if (/(hi|hello|hey|yo|good (morning|evening|afternoon))/.test(text)) return "greeting";
   if (/(hire|hiring|job|role|position|open to work|resume|cv|interview|notice)/.test(text)) return "hiring";
-  if (/(stack|tech|skills|typescript|javascript|react|next|node|express|mongodb|postgres|sql|angular|tailwind)/.test(text)) return "tech";
+  if (/(stack|tech|skills|typescript|javascript|react native|react|next|node|express|mongodb|postgres|sql|tailwind)/.test(text)) return "tech";
   if (/(project|build|mvp|app|website|dashboard|saas|api|serverless|cloudflare|vercel)/.test(text)) return "project";
-  if (/(contact|email|reach|linkedin|github)/.test(text)) return "contact";
+  if (/(contact|email|phone|reach|linkedin|github)/.test(text)) return "contact";
   return "generic";
 };
 
@@ -110,7 +109,7 @@ const extractSignals = (raw) => {
   return {
     wantsRemote: /(remote)/.test(text),
     wantsFullTime: /(full[-\s]?time|permanent|job)/.test(text),
-    wantsFrontend: /(frontend|ui|ux|react|next)/.test(text),
+    wantsFrontend: /(frontend|ui|ux|react native|react|next)/.test(text),
     wantsBackend: /(backend|api|node|express)/.test(text),
     wantsServerless: /(serverless|edge|cloudflare|workers)/.test(text),
     mentionsMongo: /(mongo)/.test(text),
@@ -122,7 +121,7 @@ const buildReply = ({ prompt, memory }) => {
   const intent = detectIntent(prompt);
   const signals = extractSignals(prompt);
   const userText = prompt.trim();
-  const echo = userText && userText.length < 120 ? `You said: “${userText}”.\n\n` : "";
+  const echo = userText && userText.length < 120 ? `You said: "${userText}".\n\n` : "";
 
   const nextMemory = {
     ...memory,
@@ -133,26 +132,26 @@ const buildReply = ({ prompt, memory }) => {
 
   const greeting = () =>
     pick([
-      `Hey 👋 I’m **PrasadGPT**.\nI’m a **${PROFILE.title}** (React/Next.js, Node/Express, MongoDB/PostgreSQL).\n\nAre you here for **hiring**, or do you want to talk about a **project**?`,
-      `Hi! 👋 I’m **PrasadGPT** — built from my real resume.\n\nAsk me about **experience**, **projects**, **tech stack**, or **role fit**.`,
+      `Hey, I'm **PrasadGPT**.\nI'm a **${PROFILE.title}** working across React, React Native, Next.js, Node/Express, and MongoDB/PostgreSQL.\n\nAre you here for **hiring**, or do you want to talk about a **project**?`,
+      `Hi, I'm **PrasadGPT** - built from my real resume.\n\nAsk me about **experience**, **projects**, **tech stack**, or **role fit**.`,
     ]);
 
   const hiring = () => {
     const focus = nextMemory.signals.wantsFrontend
-      ? "Frontend/React"
+      ? "Frontend / Mobile"
       : nextMemory.signals.wantsBackend
-      ? "Backend/API"
+      ? "Backend / API"
       : "Full Stack";
 
     return (
       echo +
-      `Yes — I’m open to roles.\n\n` +
+      `Yes - I'm open to roles.\n\n` +
       `**Quick fit summary (${focus}):**\n` +
-      `- ${PROFILE.experience[0].company} — ${PROFILE.experience[0].role}\n` +
-      `- Built React/Angular UI components + Node/Express REST APIs\n` +
-      `- JWT auth + Zod validation + MongoDB/PostgreSQL\n` +
-      `- Improved API latency by ~25% on high-traffic routes\n\n` +
-      `If you paste a JD or tell me the stack + responsibilities, I’ll map my experience to it in a recruiter-friendly way.`
+      `- ${PROFILE.experience[0].company} - ${PROFILE.experience[0].role}\n` +
+      `- Built React, React Native, and Next.js interfaces with Node/Express REST APIs\n` +
+      `- JWT auth + Zod validation + MongoDB/PostgreSQL/MySQL\n` +
+      `- Improved API latency by about 25% on high-traffic routes\n\n` +
+      `If you paste a JD or tell me the stack and responsibilities, I'll map my experience to it in a recruiter-friendly way.`
     );
   };
 
@@ -165,33 +164,32 @@ const buildReply = ({ prompt, memory }) => {
 
     return (
       echo +
-      `**Here’s my core stack:**\n` +
+      `**Here's my core stack:**\n` +
       `- Frontend: ${PROFILE.skills.frontend.join(", ")}\n` +
       `- Backend: ${PROFILE.skills.backend.join(", ")}\n` +
       `- DB/Tools: ${PROFILE.skills.dbTools.join(", ")}\n\n` +
       `**Best matching project:**\n` +
-      `- **${bestProject.name}** (${bestProject.period}) — ${bestProject.stack.join(", ")}\n` +
-      `  - ${bestProject.bullets[0]}\n` +
-      (bestProject.bullets[1] ? `  - ${bestProject.bullets[1]}\n` : "") +
-      `\nWant the **live demo + GitHub** links for that one?`
+      `- **${bestProject.name}** (${bestProject.period}) - ${bestProject.stack.join(", ")}\n` +
+      `${bestProject.bullets.map((bullet) => `  - ${bullet}`).join("\n")}\n\n` +
+      `Want the **live demo + GitHub** links for that one?`
     );
   };
 
   const project = () => {
     const followups = [
-      "What are you building (1–2 lines)?",
+      "What are you building (1-2 lines)?",
       "Who are the users?",
       "Must-have features for v1?",
       "Any deadline?",
-      "MongoDB or PostgreSQL (or flexible)?",
+      "MongoDB or PostgreSQL, or are you flexible?",
     ];
 
     return (
       echo +
-      `Nice — I can help you shape **scope + architecture** based on what I’ve shipped.\n\n` +
-      `Answer any 2–3:\n` +
+      `Nice - I can help you shape **scope + architecture** based on what I've shipped.\n\n` +
+      `Answer any 2-3:\n` +
       followups.map((q) => `- ${q}`).join("\n") +
-      `\n\nThen I’ll reply with:\n- suggested v1 scope\n- recommended stack\n- milestones (what to build first)`
+      `\n\nThen I'll reply with:\n- suggested v1 scope\n- recommended stack\n- milestones for what to build first`
     );
   };
 
@@ -201,18 +199,18 @@ const buildReply = ({ prompt, memory }) => {
     `- **Location:** ${PROFILE.location}\n` +
     `- **LinkedIn:** [${PROFILE.links.linkedin}](${PROFILE.links.linkedin})\n` +
     `- **GitHub:** [${PROFILE.links.github}](${PROFILE.links.github})\n\n` +
-    `I’m always open to opportunities (and yes, CSS centering still tests my patience 😅).`;
+    `I'm always happy to talk about roles, projects, or product builds.`;
 
   const generic = () => {
     const nudge = pick([
-      "Do you want to talk hiring/role fit, or a project?",
+      "Do you want to talk hiring and role fit, or a project?",
       "Are you looking to hire me, or are you scoping a build?",
       "Tell me what you need: role fit, tech stack, or project planning.",
     ]);
 
     return (
       echo +
-      `Got it.\n\nI can help with:\n- role fit (resume-based)\n- my tech stack & strongest projects\n- scoping your app into milestones\n\n${nudge}`
+      `Got it.\n\nI can help with:\n- role fit from my resume\n- my tech stack and strongest projects\n- scoping your app into milestones\n\n${nudge}`
     );
   };
 
@@ -268,7 +266,6 @@ const isOutOfStack = (raw) => {
 };
 
 const askBackend = async (question) => {
-  console.log("api called")
   const response = await fetch(`${API_URL}/ask`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -280,7 +277,7 @@ const askBackend = async (question) => {
   try {
     data = JSON.parse(rawText);
   } catch {
-    // keep data null
+    data = null;
   }
 
   if (!response.ok) {
@@ -300,14 +297,12 @@ const askBackend = async (question) => {
   return String(data.answer);
 };
 
-/** Streaming effect */
 const streamText = async ({ fullText, onChunk, speed = 12, chunkSize = 2 }) => {
   let i = 0;
   while (i < fullText.length) {
     const next = fullText.slice(i, i + chunkSize);
     onChunk(next);
     i += chunkSize;
-    // eslint-disable-next-line no-await-in-loop
     await new Promise((r) => setTimeout(r, speed));
   }
 };
@@ -316,26 +311,23 @@ const starterMessages = [
   {
     role: "ai",
     content:
-      "Hey, I’m **PrasadGPT** 👋\nI’m a Full Stack Developer (React/Next.js, Node/Express, MongoDB/PostgreSQL).\nAsk about hiring, my projects, or tech stack.",
+      "Hey, I'm **PrasadGPT**.\nI'm a Full Stack Developer working across React, React Native, Next.js, Node/Express, and MongoDB/PostgreSQL.\nAsk about hiring, my projects, or tech stack.",
     meta: { tag: "" },
   },
-] ;
+];
 
 function classifyError(err) {
   const msg = (err?.message || "").toLowerCase();
   const status = err?.status;
 
-  // Network fetch error (backend down)
   if (!status && (msg.includes("failed to fetch") || msg.includes("network") || msg.includes("cors"))) {
     return "BACKEND DOWN";
   }
 
-  // Common API overload / quota
   if (status === 429 || msg.includes("quota") || msg.includes("rate") || msg.includes("too many")) {
     return "RATE LIMITED";
   }
 
-  // Token/context limit style errors
   if (
     msg.includes("token") ||
     msg.includes("context") ||
@@ -349,7 +341,6 @@ function classifyError(err) {
   return "AI DOWN";
 }
 
-/** Markdown renderer with safe link styling */
 const Markdown = ({ text }) => {
   return (
     <ReactMarkdown
@@ -382,7 +373,6 @@ const GPTWindow = () => {
   const [messages, setMessages] = useState(starterMessages);
   const [input, setInput] = useState("");
   const [isThinking, setIsThinking] = useState(false);
-  const [notice, setNotice] = useState(null);
   const [pendingQuestion, setPendingQuestion] = useState(null);
   const scrollRef = useRef(null);
 
@@ -396,10 +386,9 @@ const GPTWindow = () => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, isThinking]);
 
-  // Handle API call + streaming via effect
   useEffect(() => {
     if (!pendingQuestion) return;
-    
+
     let canceled = false;
 
     const streamAnswer = async (fullText, metaUpdate) => {
@@ -428,7 +417,6 @@ const GPTWindow = () => {
     const run = async () => {
       try {
         const answer = await askBackend(pendingQuestion.question);
-        setNotice(null);
         await streamAnswer(answer, { tag: "" });
       } catch (err) {
         const tag = classifyError(err);
@@ -439,8 +427,8 @@ const GPTWindow = () => {
         setMemory(nextMemory);
 
         const fallback =
-          `⚠️ **${tag}**\n\n` +
-          `Backend/AI isn’t available right now, so I’m replying in **offline mode** from my resume data:\n\n` +
+          `**${tag}**\n\n` +
+          `Backend/AI isn't available right now, so I'm replying in **offline mode** from my resume data:\n\n` +
           content;
 
         await streamAnswer(fallback, { tag });
@@ -472,7 +460,6 @@ const GPTWindow = () => {
     setInput("");
     setIsThinking(true);
 
-    // Off-topic short-circuit (saves a backend call)
     if (isOffTopic(trimmed)) {
       setMessages((prev) => [
         ...prev.slice(0, -1),
@@ -513,7 +500,6 @@ const GPTWindow = () => {
       animate={{ opacity: 1, y: 0 }}
       className="w-full max-w-2xl mx-auto bg-white border border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
     >
-      {/* Header */}
       <div className="border-b-2 border-black px-4 py-3 bg-white flex justify-between items-center relative overflow-hidden">
         <div className="flex items-center gap-3">
           <div className="relative flex h-3 w-3">
@@ -523,7 +509,7 @@ const GPTWindow = () => {
           <span className="font-black uppercase tracking-tighter text-lg">PrasadGPT</span>
         </div>
         <div className="flex items-center gap-2 text-[10px] font-bold border border-black px-2 py-1 uppercase bg-white">
-          <span>v1.0.4 — Live</span>
+          <span>v1.0.5 - Live</span>
           <div className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full bg-green-500 opacity-75"></span>
             <span className="relative inline-flex h-2 w-2 bg-green-500"></span>
@@ -531,7 +517,6 @@ const GPTWindow = () => {
         </div>
       </div>
 
-      {/* Chat Body */}
       <div
         ref={scrollRef}
         className="h-96 overflow-y-auto p-4 space-y-4 bg-white scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent"
@@ -556,7 +541,6 @@ const GPTWindow = () => {
                     {msg.role === "user" ? "You" : "PrasadGPT"}
                   </span>
 
-                  {/* ✅ Error badge / tag */}
                   {msg?.meta?.tag ? (
                     <span className="text-[9px] uppercase font-black border border-black px-2 py-0.5 bg-white">
                       {msg.meta.tag}
@@ -564,7 +548,6 @@ const GPTWindow = () => {
                   ) : null}
                 </div>
 
-                {/* ✅ Markdown for AI; plain for user */}
                 {msg.role === "ai" ? (
                   <div className="text-[13px] leading-relaxed">
                     <Markdown text={msg.content || ""} />
@@ -586,7 +569,6 @@ const GPTWindow = () => {
         )}
       </div>
 
-      {/* Input Footer */}
       <div className="border-t border-black p-4 bg-white">
         <div className="flex gap-2">
           <textarea

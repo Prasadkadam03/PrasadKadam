@@ -10,71 +10,46 @@ import GPTWindow from '../components/GPTWindow';
 import SectionHeading from '../components/SectionHeading';
 import Footer from '../components/Footer';
 
-// Data Arrays
 const PROJECTS = [
     {
         title: "InspireWrite",
-        description: "Serverless writing platform on Cloudflare Workers with JWT auth, runtime Zod validation, and Prisma/PostgreSQL for relational data.",
-        tags: ["React", "TypeScript", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT"],
+        description: "Serverless app on Cloudflare Workers with JWT auth, Zod validation, Prisma/PostgreSQL, and cross-platform React Native features.",
+        tags: ["React", "React Native", "TypeScript", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
         github: "https://github.com/Prasadkadam03/INSPIREWRITE",
         demo: "https://inspirewrite.vercel.app/",
         featured: true
     },
     {
         title: "PayTM Clone",
-        description: "Mock payments workflow with auth, transfers, and rollback handling. Built REST APIs with Node/Express, MongoDB schemas, and server-side Zod validation.",
-        tags: ["React", "Node.js", "Express", "MongoDB", "Zod", "TailwindCSS"],
+        description: "Mock payments workflow with auth, transfers, rollback handling, server-side validation, and mobile features connected to a Node.js backend.",
+        tags: ["React", "React Native", "Node.js", "Express", "MongoDB", "Zod", "TailwindCSS"],
         github: "https://github.com/Prasadkadam03/PayTM",
         demo: "https://paytm-1-6ke7.onrender.com",
         featured: false
     },
     {
         title: "BookAtlas",
-        description: "API-driven search experience using Open Library data with reusable components, Vite HMR, and Vercel deployment.",
-        tags: ["React", "TypeScript", "Vite", "TailwindCSS", "API"],
+        description: "API-driven search UI using Open Library data with reusable components, Vite HMR, and Next.js improvements for SEO and performance.",
+        tags: ["React", "TypeScript", "Vite", "TailwindCSS", "Next.js", "Open Library API"],
         github: "https://github.com/prasadkadam03/BookAtlas",
         demo: "https://book-atlas.vercel.app/",
         featured: false
     },
     {
-        title: "Tirupati Mobile Shop",
-        description: "Angular 17 site for a mobile shop showcasing products and services with lazy-loaded modules and EmailJS-powered inquiries.",
-        tags: ["Angular", "TypeScript", "Lazy Loading", "EmailJS", "Responsive UI"],
-        github: "https://github.com/Prasadkadam03/Tirupati_Mobiles",
-        demo: "https://tirupatimobiles.netlify.app/",
-        featured: false
-    },
-    {
         title: "News App",
-        description: "Frontend for browsing news with async fetch, search, filters, and dark mode optimized for mobile and desktop.",
+        description: "News browsing interface with async JavaScript, search, filters, and dark mode optimized for mobile and desktop.",
         tags: ["HTML", "CSS", "JavaScript", "API", "Responsive"],
         github: "https://github.com/Prasadkadam03/News_App",
         demo: "https://news-app-blue-tau.vercel.app/",
-        featured: false
-    },
-    {
-        title: "File Packer & Unpacker",
-        description: "Java utility that packs multiple files from a directory into a single archive and restores them with custom headers and byte-level parsing.",
-        tags: ["Java", "File I/O", "Data Structures"],
-        github: "https://github.com/Prasadkadam03/File_Packer_Unpacker-JAVA",
-        demo: "https://github.com/Prasadkadam03/File_Packer_Unpacker-JAVA",
-        featured: false
-    },
-    {
-        title: "Customized Virtual File System (CVFS)",
-        description: "C/C++ virtual file system emulating inode, file table, super block, and data block behaviors with OS-like syscalls (open, read, write, close).",
-        tags: ["C", "C++", "File Systems", "Data Structures"],
-        github: "https://github.com/Prasadkadam03/Customized_Virtual_File_System_-CVFS-",
-        demo: "https://github.com/Prasadkadam03/Customized_Virtual_File_System_-CVFS-",
         featured: false
     }
 ];
 
 const SKILL_GROUPS = [
     {
-        title: "Frontend Craft",
+        title: "Frontend",
         icon: <Globe size={20} />,
-        skills: ["React", "Next.js", "Angular", "JavaScript (ES6+)", "TypeScript", "Tailwind CSS", "HTML5/CSS3", "Framer Motion"]
+        skills: ["React", "React Native", "Next.js", "JavaScript (ES6+)", "TypeScript", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"]
     },
     {
         title: "Backend & APIs",
@@ -82,9 +57,9 @@ const SKILL_GROUPS = [
         skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Zod Validation"]
     },
     {
-        title: "Data & Ops",
+        title: "Data & Tools",
         icon: <Layers size={20} />,
-        skills: ["MongoDB (Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Docker (basic)", "CI/CD (learning)", "Vercel & Cloudflare Workers"]
+        skills: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"]
     }
 ];
 
@@ -101,12 +76,12 @@ const PROCESS_STEPS = [
     },
     {
         title: "Build & Iterate",
-        description: "Ship React/TypeScript frontends and Node/Express services in small increments.",
+        description: "Ship React, React Native, and Node/Express features in small, testable increments.",
         icon: <Code2 size={24} />
     },
     {
         title: "Ship & Observe",
-        description: "Deploy to Vercel/Cloudflare, test flows, and monitor performance to refine.",
+        description: "Deploy to Vercel or Cloudflare, test flows, and refine for performance.",
         icon: <Rocket size={24} />
     }
 ];
@@ -114,44 +89,44 @@ const PROCESS_STEPS = [
 const QUICK_FACTS = [
     { label: "Current Role", value: "Junior Developer @ VIZIPP", icon: <BriefcaseBusiness size={16} /> },
     { label: "Location", value: "Nashik, India (IST)", icon: <Globe size={16} /> },
-    { label: "Availability", value: "Open to full-time & freelance contracts", icon: <Rocket size={16} /> },
-    { label: "Response Time", value: "Replies within 24 hours", icon: <Clock size={16} /> }
+    { label: "Core Stack", value: "React, React Native, Node.js, Next.js", icon: <Rocket size={16} /> },
+    { label: "Education", value: "B.Tech in Computer Engineering", icon: <Clock size={16} /> }
 ];
 
 const EXPERIENCE = [
     {
         company: "VIZIPP",
         role: "Junior Developer",
-        period: "Oct 2025 – PRESENT",
-        description: "Owning React/Angular UI components, Node/Express endpoints with JWT + Zod, and MongoDB models. Focused on latency wins, payload trims, and release-ready PRs across sprints."
+        period: "Oct 2025 - Present",
+        description: "Developed 8+ Node.js/Express REST endpoints with JWT auth, Zod validation, production-grade error handling, MongoDB models, and cross-platform React Native features for VIZIPP products."
     },
     {
         company: "VIZIPP",
-        role: "Full Stack Developer Intern",
-        period: "Apr 2025 – Sep 2025",
-        description: "Shipped 10+ responsive React/Angular components, 8+ REST endpoints, and CRUD flows with Mongoose models. Improved average endpoint latency by ~25% on high-traffic routes."
+        role: "Frontend Developer Intern",
+        period: "Apr 2025 - Sep 2025",
+        description: "Built 10+ responsive UI components with React, React Native, and TailwindCSS for VIZIPP, while improving Next.js apps with dynamic routing, SSR, and API integrations."
     },
 ];
 
 const FAQS = [
     {
         q: "Can you own both frontend and backend?",
-        a: "Yes. I build React/Next/Angular interfaces and pair them with Node.js/Express APIs, JWT auth, and Zod validation for predictable inputs."
+        a: "Yes. I build React, Next.js, and React Native experiences and pair them with Node.js/Express APIs, JWT auth, and Zod validation for reliable end-to-end delivery."
     },
     {
         q: "How do you handle databases?",
-        a: "I model data in MongoDB with Mongoose or in SQL with Prisma/PostgreSQL/MySQL, keeping indexes, relationships, and migrations documented."
+        a: "I model data in MongoDB with Mongoose or in SQL with Prisma, PostgreSQL, and MySQL, keeping the schema and API layer aligned."
     },
     {
         q: "What does delivery look like?",
-        a: "Short feedback loops. I share progress in days, not weeks, ship to Vercel/Cloudflare early, and keep API docs/Postman collections updated."
+        a: "Short feedback loops. I ship in small increments, validate APIs early, and deploy web and edge apps with performance and maintainability in mind."
     }
 ];
 
 const SERVICES = [
     {
         title: "Product UI Engineering",
-        description: "Responsive, accessible interfaces in React/Next/Angular with reusable components and micro-animations.",
+        description: "Responsive, accessible interfaces in React, Next.js, and React Native with reusable components and clean UX details.",
         icon: <Code2 size={24} />
     },
     {
@@ -161,7 +136,7 @@ const SERVICES = [
     },
     {
         title: "Full-Stack Delivery",
-        description: "React/Next.js frontends paired with Node/Express APIs, JWT, Zod validation, and CI-ready workflows.",
+        description: "React and Next.js frontends paired with Node/Express APIs, JWT auth, Zod validation, and stable data flows.",
         icon: <Rocket size={24} />
     },
     {
@@ -172,11 +147,11 @@ const SERVICES = [
     {
         title: "Data Modeling & Delivery",
         icon: <Server size={24} />,
-        description: "MongoDB/PostgreSQL schemas via Mongoose or Prisma, tuned queries, and deploys on Vercel/Cloudflare Workers."
+        description: "MongoDB/PostgreSQL schemas via Mongoose or Prisma, tuned queries, and deployments on Vercel or Cloudflare Workers."
     },
     {
-        title: "App & Platform Launch",
-        description: "Performance-checked deployments, observability hooks, and release support for web and edge apps.",
+        title: "Mobile Feature Delivery",
+        description: "Cross-platform React Native features connected cleanly to backend services and shared product flows.",
         icon: <Globe size={24} />
     }
 ];
@@ -185,12 +160,10 @@ const Home = () => {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        // Handle scrolling for paths like /services, /work, /workflow, /contact
         const sectionId = pathname.replace('/', '');
         if (sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
-                // Short delay to ensure component is rendered
                 setTimeout(() => {
                     element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
@@ -200,7 +173,6 @@ const Home = () => {
 
     return (
         <>
-            {/* Hero Section */}
             <section className="min-h-screen pt-24 md:pt-40 flex items-center relative md:px-6 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-15 items-center w-full">
                     <div className="space-y-8 md:space-y-10 md:px-0  px-6 relative z-10">
@@ -214,7 +186,7 @@ const Home = () => {
                                 <span className="animate-ping absolute inline-flex h-full w-full  bg-green-500 opacity-75"></span>
                                 <span className="relative inline-flex  h-2 w-2 bg-green-500"></span>
                             </div>
-                            Open for full-time + freelance
+                            Web + Mobile Delivery
                         </motion.div>
 
                         <div className="space-y-1">
@@ -235,7 +207,7 @@ const Home = () => {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="text-lg md:text-2xl text-neutral-600 max-w-xl font-light leading-relaxed border-l-2 border-black pl-6"
                         >
-                            Full Stack Developer delivering React/TypeScript frontends and Node.js/Express APIs with JWT security, Zod validation, and tuned queries across MongoDB, PostgreSQL, and MySQL. Open to full-time roles and freelance/contract projects.
+                            Full Stack Developer with hands-on experience delivering web and mobile applications end-to-end. Skilled in JavaScript/TypeScript, React, React Native, Node.js, Next.js, Express, REST APIs, and SQL/NoSQL databases.
                         </motion.p>
 
                         <motion.div
@@ -280,10 +252,9 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Services Section */}
             <section id="services" className="py-24 md:py-40 px-6 bg-neutral-50">
                 <div className="max-w-7xl mx-auto">
-                    <SectionHeading title="Services" subtitle="Full-stack delivery across UI engineering, API/auth layers, and reliable data models." />
+                    <SectionHeading title="Services" subtitle="Full-stack delivery across interface work, API/auth layers, mobile features, and reliable data models." />
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                         {SERVICES.map((s, i) => (
@@ -310,7 +281,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Experience Section */}
             <section id="experience" className="py-24 md:py-40 bg-black text-white px-6 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px] opacity-20" />
                 <div className="max-w-7xl mx-auto relative z-10">
@@ -349,9 +319,8 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Workflow Section */}
             <section id="workflow" className="py-24 md:py-40 px-6 max-w-7xl mx-auto">
-                <SectionHeading title="Delivery Workflow" subtitle="How I take React/Node ideas from notes to deployed, stable releases." centered />
+                <SectionHeading title="Delivery Workflow" subtitle="How I take React and Node ideas from notes to deployed, stable releases." centered />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative mt-16 md:mt-20">
                     <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-neutral-100 z-0" />
@@ -374,7 +343,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Skills Section */}
             <section id="skills" className="py-24 md:py-40 bg-neutral-950 text-white px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="mb-16 md:mb-24">
@@ -410,9 +378,8 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Work Section */}
             <section id="work" className="py-24 md:py-40 px-6 max-w-7xl mx-auto">
-                <SectionHeading title="Projects" subtitle="Recent full-stack builds shipped with React/TypeScript, Node.js/Express, and well-modeled data layers." />
+                <SectionHeading title="Projects" subtitle="Recent full-stack builds shipped with React, React Native, Node.js, and well-modeled data layers." />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {PROJECTS.map((project, idx) => (
@@ -454,7 +421,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* FAQ Section */}
             <section className="py-24 md:py-40 px-6 max-w-4xl mx-auto border-t border-neutral-200">
                 <div className="text-center mb-16 md:mb-24">
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 uppercase">FAQs</h2>
@@ -480,36 +446,32 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Contact / Hiring */}
             <section id="contact" className="py-20 md:py-32 px-4 md:px-6 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
-                    {/* Left Column: Content */}
                     <div className="space-y-6 md:pr-8">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Ready to Hire</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Let&apos;s Connect</p>
                         <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight uppercase leading-[1.1] text-balance">
-                            Let's ship your next release
+                            Let&apos;s build the next release
                         </h2>
                         <p className="text-base md:text-xl text-neutral-600 leading-relaxed max-w-2xl">
-                            I build production React/TypeScript frontends and Node.js/Express APIs with JWT auth, Zod validation, and tuned MongoDB/PostgreSQL queries. Open to full-time roles and freelance/contract work. I reply within one business day.
+                            I build production web and mobile applications with React, React Native, Next.js, Node.js, Express, JWT auth, Zod validation, and well-modeled MongoDB/PostgreSQL data layers.
                         </p>
 
                         <div className="flex flex-wrap gap-2 md:gap-3 text-xs md:text-sm text-neutral-700">
-                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Frontend: React, Next.js</span>
+                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Frontend: React, Next.js, React Native</span>
                             <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Backend: Node.js, Express</span>
-                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Databases: MongoDB, SQL</span>
-                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Git/GitHub, CI/CD</span>
+                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Databases: MongoDB, PostgreSQL, MySQL</span>
+                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Prisma, Postman, Cloudflare Workers</span>
                         </div>
                     </div>
 
-                    {/* Right Column: Contact Card */}
                     <div className="bg-white border border-neutral-200  shadow-xl p-5 md:p-8 space-y-6 w-full">
                         <div className="flex items-center gap-3 pb-2 border-b border-neutral-100">
                             <div className="h-2.5 w-2.5 bg-green-500 animate-pulse" />
-                            <p className="text-xs font-mono font-medium text-neutral-500 uppercase tracking-wider">Taking new engagements now</p>
+                            <p className="text-xs font-mono font-medium text-neutral-500 uppercase tracking-wider">Reach out directly</p>
                         </div>
 
                         <div className="space-y-3">
-                            {/* Email Item */}
                             <a href="mailto:prasadkadam29503@gmail.com" className="group flex items-center justify-between gap-4 p-4 border border-neutral-200  hover:border-black hover:shadow-sm transition-all">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="p-2.5 bg-neutral-100 rounded group-hover:bg-black group-hover:text-white transition-colors shrink-0">
@@ -522,7 +484,6 @@ const Home = () => {
                                 </div>
                             </a>
 
-                            {/* GitHub Item */}
                             <a href="https://github.com/prasadkadam03" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-4 p-4 border border-neutral-200  hover:border-black hover:shadow-sm transition-all">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="p-2.5 bg-neutral-100 rounded group-hover:bg-black group-hover:text-white transition-colors shrink-0">
@@ -536,7 +497,6 @@ const Home = () => {
                                 <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-[0.1em] text-neutral-400 shrink-0">OSS</span>
                             </a>
 
-                            {/* LinkedIn Item */}
                             <a href="https://www.linkedin.com/in/prasadkadam03/" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-4 p-4 border border-neutral-200 hover:border-black hover:shadow-sm transition-all">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="p-2.5 bg-neutral-100 rounded group-hover:bg-black group-hover:text-white transition-colors shrink-0">
@@ -549,7 +509,6 @@ const Home = () => {
                                 </div>
                             </a>
 
-                            {/* Call Item */}
                             <a href="tel:+918055907280" className="group flex items-center justify-between gap-4 p-4 border border-neutral-200 hover:border-black hover:shadow-sm transition-all">
                                 <div className="flex items-center gap-3 min-w-0">
                                     <div className="p-2.5 bg-neutral-100 rounded group-hover:bg-black group-hover:text-white transition-colors shrink-0">
@@ -564,7 +523,6 @@ const Home = () => {
                             </a>
                         </div>
 
-                        {/* Action Buttons */}
                         <div className="grid grid-cols-1 gap-3 pt-2">
                             <a href="https://drive.google.com/drive/folders/1GAf5XFtumVJgHiWj9p4yz45hB3_40kCt?usp=drive_link" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center px-6 py-4 border border-neutral-300 text-neutral-800 font-bold uppercase tracking-[0.15em] text-[11px] hover:border-black transition-colors text-center">
                                 Resume
@@ -574,7 +532,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Footer / Contact */}
             <Footer />
         </>
     );
