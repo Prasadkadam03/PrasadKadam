@@ -39,6 +39,45 @@ function isCodeLikeRequest(q: string) {
   );
 }
 
+function isCodeQuestion(q: string) {
+  const t = normalize(q);
+  const stack = [
+    "react",
+    "node",
+    "express",
+    "javascript",
+    "typescript",
+    "tailwind",
+    "postgres",
+    "postgresql",
+    "firebase",
+    "mongodb",
+    "mongo",
+    "redux",
+    "socket",
+    "vite",
+    "docker",
+    "graphql",
+    "redis",
+    "backend",
+    "frontend",
+    "api",
+    "database",
+    "auth",
+    "authentication",
+    "deploy",
+    "deployment",
+    "function",
+    "component",
+    "hook",
+    "state",
+    "database",
+    "query",
+    "rest api",
+  ];
+  return stack.some((tech) => t.includes(tech));
+}
+
 function isOutOfStack(q: string) {
   const t = normalize(q);
   const nonStack = [
@@ -73,10 +112,13 @@ type AiProviderConfig = {
 
 type AiConfig = {
   primary: AiProviderConfig;
-  fallback: AiProviderConfig;
+  codingFirst?: AiProviderConfig;
+  fallbacks: AiProviderConfig[];
 };
 
 const REQUEST_TIMEOUT_MS = 20_000;
+const MAX_ATTEMPTS = 3;
+const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
 
 function getProviderFailureSummary(error: unknown) {
   if (error instanceof Error && error.name === "AbortError") {
@@ -102,62 +144,76 @@ async function fetchProviderAnswer({
   question: string;
   provider: AiProviderConfig;
 }) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-  try {
-    const response = await fetch(provider.baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${provider.apiKey}`,
-      },
-      body: JSON.stringify({
-        model: provider.model,
-        messages: [
-          { role: "system", content: SYSTEM_INSTRUCTION },
-          { role: "user", content: question },
-        ],
-        temperature: 0.6,
-        max_tokens: 2000,
-      }),
-      signal: controller.signal,
-    });
-
-    const rawText = await response.text();
-    let data: any = null;
     try {
-      data = rawText ? JSON.parse(rawText) : null;
-    } catch {
-      // keep data null if parsing fails
+      const response = await fetch(provider.baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${provider.apiKey}`,
+        },
+        body: JSON.stringify({
+          model: provider.model,
+          messages: [
+            { role: "system", content: SYSTEM_INSTRUCTION },
+            { role: "user", content: question },
+          ],
+          temperature: 0.6,
+          max_tokens: 2000,
+        }),
+        signal: controller.signal,
+      });
+
+      const rawText = await response.text();
+      let data: any = null;
+      try {
+        data = rawText ? JSON.parse(rawText) : null;
+      } catch {
+        // keep data null if parsing fails
+      }
+
+      if (!response.ok) {
+        const err: any = new Error(
+          data?.error?.message ||
+            data?.message ||
+            `${provider.name} request failed (${response.status})`
+        );
+        err.status = response.status;
+        err.retryable = RETRYABLE_STATUSES.has(response.status);
+        throw err;
+      }
+
+      const answer = (data?.choices?.[0]?.message?.content || "").trim();
+      if (!answer) {
+        const err: any = new Error(`No answer returned from ${provider.name}`);
+        err.status = response.status;
+        err.retryable = RETRYABLE_STATUSES.has(response.status);
+        throw err;
+      }
+
+      const finishReason = data?.choices?.[0]?.finish_reason;
+      const usage = data?.usage;
+
+      console.log(`[AI] ${provider.name} finish:`, finishReason);
+      console.log(`[AI] ${provider.name} usage:`, usage);
+
+      return answer;
+    } catch (error: any) {
+      if (error?.retryable && attempt < MAX_ATTEMPTS) {
+        const delayMs = 500 * 2 ** (attempt - 1);
+        console.warn(
+          `[AI] ${provider.name} failed (${error.status}), retrying in ${delayMs}ms (attempt ${attempt}/${MAX_ATTEMPTS})`
+        );
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+        continue;
+      }
+      throw error;
+    } finally {
+      clearTimeout(timeout);
     }
-
-    if (!response.ok) {
-      const err: any = new Error(
-        data?.error?.message ||
-          data?.message ||
-          `${provider.name} request failed (${response.status})`
-      );
-      err.status = response.status;
-      throw err;
-    }
-
-    const answer = (data?.choices?.[0]?.message?.content || "").trim();
-    if (!answer) {
-      const err: any = new Error(`No answer returned from ${provider.name}`);
-      err.status = response.status;
-      throw err;
-    }
-
-    const finishReason = data?.choices?.[0]?.finish_reason;
-    const usage = data?.usage;
-
-    console.log(`[AI] ${provider.name} finish:`, finishReason);
-    console.log(`[AI] ${provider.name} usage:`, usage);
-
-    return answer;
-  } finally {
-    clearTimeout(timeout);
   }
 }
 
@@ -168,33 +224,27 @@ async function fetchAnswer({
   question: string;
   config: AiConfig;
 }) {
-  try {
-    return await fetchProviderAnswer({
-      question,
-      provider: config.primary,
-    });
-  } catch (primaryError) {
-    console.error(
-      `[AI] ${config.primary.name} failed: ${getProviderFailureSummary(primaryError)}`
-    );
+  const chain = [config.primary, ...config.fallbacks];
+  if (config.codingFirst && isCodeQuestion(question)) {
+    chain.unshift(config.codingFirst);
   }
 
-  try {
-    return await fetchProviderAnswer({
-      question,
-      provider: config.fallback,
-    });
-  } catch (fallbackError) {
-    console.error(
-      `[AI] ${config.fallback.name} failed: ${getProviderFailureSummary(fallbackError)}`
-    );
+  let lastSummary = getProviderFailureSummary(new Error("unknown"));
 
-    const err: any = new Error(
-      "AI providers are temporarily unavailable. Please try again later."
-    );
-    err.status = 503;
-    throw err;
+  for (const provider of chain) {
+    try {
+      return await fetchProviderAnswer({ question, provider });
+    } catch (providerError) {
+      lastSummary = getProviderFailureSummary(providerError);
+      console.error(`[AI] ${provider.name} failed: ${lastSummary}`);
+    }
   }
+
+  const err: any = new Error(
+    "AI providers are temporarily unavailable. Please try again later."
+  );
+  err.status = 503;
+  throw err;
 }
 
 export function registerAskRoute(app: Application, config: AiConfig) {

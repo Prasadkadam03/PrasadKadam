@@ -37,37 +37,35 @@ const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_BASE_URL =
   process.env.OPENROUTER_BASE_URL ||
   "https://openrouter.ai/api/v1/chat/completions";
-const OPENROUTER_MODEL =
-  process.env.OPENROUTER_MODEL || "nvidia/nemotron-3.5-lightning:free";
 
-const ZAI_API_KEY = process.env.ZAI_API_KEY;
-const ZAI_BASE_URL =
-  process.env.ZAI_BASE_URL ||
-  "https://api.z.ai/api/paas/v4/chat/completions";
-
-if (!OPENROUTER_API_KEY || !ZAI_API_KEY) {
-  const missingApiKeys = [
-    !OPENROUTER_API_KEY && "OPENROUTER_API_KEY",
-    !ZAI_API_KEY && "ZAI_API_KEY",
-  ].filter(Boolean);
-
-  throw new Error(`Missing ${missingApiKeys.join(", ")} in .env`);
+if (!OPENROUTER_API_KEY) {
+  throw new Error("Missing OPENROUTER_API_KEY in .env");
 }
 
-// Route
+const provider = (model: string, name: string) => ({
+  name,
+  apiKey: OPENROUTER_API_KEY as string,
+  baseUrl: OPENROUTER_BASE_URL,
+  model,
+});
+
 registerAskRoute(app, {
-  primary: {
-    name: "OpenRouter",
-    apiKey: OPENROUTER_API_KEY,
-    baseUrl: OPENROUTER_BASE_URL,
-    model: OPENROUTER_MODEL,
-  },
-  fallback: {
-    name: "Z.AI",
-    apiKey: ZAI_API_KEY,
-    baseUrl: ZAI_BASE_URL,
-    model: "glm-4.7-flash",
-  },
+  primary: provider(
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "Nemotron 3 Ultra (primary)"
+  ),
+  codingFirst: provider(
+    "nex-agi/nex-n2.5-pro:free",
+    "Nex-N2.5-Pro (coding)"
+  ),
+  fallbacks: [
+    provider(
+      "nvidia/nemotron-3.5-lightning:free",
+      "Nemotron 3.5 Lightning"
+    ),
+    provider("thinkingmachines/inkling-small:free", "Inkling Small"),
+    provider("poolside/laguna-s-2.1:free", "Laguna S 2.1"),
+  ],
 });
 
 app.listen(PORT, () => {
