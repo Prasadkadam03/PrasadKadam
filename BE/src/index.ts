@@ -33,19 +33,41 @@ app.use(
   })
 );
 
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_BASE_URL =
+  process.env.OPENROUTER_BASE_URL ||
+  "https://openrouter.ai/api/v1/chat/completions";
+const OPENROUTER_MODEL =
+  process.env.OPENROUTER_MODEL || "nvidia/nemotron-3.5-lightning:free";
+
 const ZAI_API_KEY = process.env.ZAI_API_KEY;
 const ZAI_BASE_URL =
   process.env.ZAI_BASE_URL ||
   "https://api.z.ai/api/paas/v4/chat/completions";
 
-if (!ZAI_API_KEY) {
-  throw new Error("Missing ZAI_API_KEY in .env");
+if (!OPENROUTER_API_KEY || !ZAI_API_KEY) {
+  const missingApiKeys = [
+    !OPENROUTER_API_KEY && "OPENROUTER_API_KEY",
+    !ZAI_API_KEY && "ZAI_API_KEY",
+  ].filter(Boolean);
+
+  throw new Error(`Missing ${missingApiKeys.join(", ")} in .env`);
 }
 
 // Route
 registerAskRoute(app, {
-  zaiApiKey: ZAI_API_KEY,
-  zaiBaseUrl: ZAI_BASE_URL,
+  primary: {
+    name: "OpenRouter",
+    apiKey: OPENROUTER_API_KEY,
+    baseUrl: OPENROUTER_BASE_URL,
+    model: OPENROUTER_MODEL,
+  },
+  fallback: {
+    name: "Z.AI",
+    apiKey: ZAI_API_KEY,
+    baseUrl: ZAI_BASE_URL,
+    model: "glm-4.7-flash",
+  },
 });
 
 app.listen(PORT, () => {

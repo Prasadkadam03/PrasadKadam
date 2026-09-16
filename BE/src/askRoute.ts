@@ -64,32 +64,56 @@ function isOutOfStack(q: string) {
   return null;
 }
 
-type AiConfig = {
-  zaiApiKey: string;
-  zaiBaseUrl: string;
+type AiProviderConfig = {
+  name: string;
+  apiKey: string;
+  baseUrl: string;
+  model: string;
 };
 
-// const REQUEST_TIMEOUT_MS = 20_000;
+type AiConfig = {
+  primary: AiProviderConfig;
+  fallback: AiProviderConfig;
+};
 
-async function fetchAnswer({
+const REQUEST_TIMEOUT_MS = 20_000;
+
+function getProviderFailureSummary(error: unknown) {
+  if (error instanceof Error && error.name === "AbortError") {
+    return "request timed out";
+  }
+
+  const status = (error as { status?: unknown })?.status;
+  if (typeof status === "number") {
+    return `HTTP ${status}`;
+  }
+
+  if (error instanceof TypeError) {
+    return "network error";
+  }
+
+  return "invalid or empty response";
+}
+
+async function fetchProviderAnswer({
   question,
-  config,
+  provider,
 }: {
   question: string;
-  config: AiConfig;
+  provider: AiProviderConfig;
 }) {
   const controller = new AbortController();
-  // const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const response = await fetch(config.zaiBaseUrl, {
+    const response = await fetch(provider.baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${config.zaiApiKey}`,
+        Authorization: `Bearer ${provider.apiKey}`,
       },
       body: JSON.stringify({
-        model: "glm-4.7-flash",
+        model: provider.model,
         messages: [
           { role: "system", content: SYSTEM_INSTRUCTION },
           { role: "user", content: question },
@@ -112,30 +136,64 @@ async function fetchAnswer({
       const err: any = new Error(
         data?.error?.message ||
           data?.message ||
-          `Z.AI request failed (${response.status})`
+          `${provider.name} request failed (${response.status})`
       );
       err.status = response.status;
-      err.raw = data;
       throw err;
     }
 
     const answer = (data?.choices?.[0]?.message?.content || "").trim();
     if (!answer) {
-      const err: any = new Error("No answer returned from Z.AI");
+      const err: any = new Error(`No answer returned from ${provider.name}`);
       err.status = response.status;
-      err.raw = data;
       throw err;
     }
 
     const finishReason = data?.choices?.[0]?.finish_reason;
     const usage = data?.usage;
 
-    console.log("FINISH:", finishReason);
-    console.log("USAGE:", usage);
+    console.log(`[AI] ${provider.name} finish:`, finishReason);
+    console.log(`[AI] ${provider.name} usage:`, usage);
 
     return answer;
   } finally {
-    // clearTimeout(timeout);
+    clearTimeout(timeout);
+  }
+}
+
+async function fetchAnswer({
+  question,
+  config,
+}: {
+  question: string;
+  config: AiConfig;
+}) {
+  try {
+    return await fetchProviderAnswer({
+      question,
+      provider: config.primary,
+    });
+  } catch (primaryError) {
+    console.error(
+      `[AI] ${config.primary.name} failed: ${getProviderFailureSummary(primaryError)}`
+    );
+  }
+
+  try {
+    return await fetchProviderAnswer({
+      question,
+      provider: config.fallback,
+    });
+  } catch (fallbackError) {
+    console.error(
+      `[AI] ${config.fallback.name} failed: ${getProviderFailureSummary(fallbackError)}`
+    );
+
+    const err: any = new Error(
+      "AI providers are temporarily unavailable. Please try again later."
+    );
+    err.status = 503;
+    throw err;
   }
 }
 
@@ -173,16 +231,14 @@ export function registerAskRoute(app: Application, config: AiConfig) {
         err?.message ||
         "AI error";
 
-      if (err?.name === "AbortError") {
-        msg = "AI request timed out. Please try again.";
-      } else if (err?.status === 401) {
-        msg = "Invalid Z.AI API key.";
-      } else if (err?.status === 429) {
-        msg = "Z.AI rate limit hit. Please slow down.";
-      }
-
       console.error("Error:", msg);
-      return res.status(400).json({ error: msg });
+      const status = err?.issues
+        ? 400
+        : typeof err?.status === "number"
+          ? err.status
+          : 500;
+
+      return res.status(status).json({ error: msg });
     }
   });
 }
