@@ -23,7 +23,7 @@ const SystemLog = () => {
             "CHECKING STACK OVERFLOW... for the 4th time this hour",
             "IMPORTING WISDOM... from random NPM packages",
             "ZOD VALIDATION IN PROGRESS... keeping the bad data out",
-            "OPTIMIZING MONGODB QUERIES... making them zoom 🏎️",
+            "MEMOIZING REACT COMPONENTS... making them zoom 🏎️",
             "REMOVING CONSOLE.LOGS... mostly the 'pls work' ones",
             "RE-READING THE DOCS... because I skipped them the first time",
             "NEGOTIATING WITH CSS... it's winning",

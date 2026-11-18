@@ -13,24 +13,24 @@ import Footer from '../components/Footer';
 const PROJECTS = [
     {
         title: "InspireWrite",
-        description: "Serverless app on Cloudflare Workers with JWT auth, Zod validation, Prisma/PostgreSQL, and cross-platform React Native features.",
-        tags: ["React", "React Native", "TypeScript", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
+        description: "Full stack blogging platform: write posts under categories, search by author, title or content, and like posts. Serverless Hono API on Cloudflare Workers with JWT auth, Zod validation, and Prisma + PostgreSQL.",
+        tags: ["React", "TypeScript", "Hono", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
         github: "https://github.com/Prasadkadam03/INSPIREWRITE",
         demo: "https://inspirewrite.vercel.app/",
         featured: true
     },
     {
         title: "PayTM Clone",
-        description: "Mock payments workflow with auth, transfers, rollback handling, server-side validation, and mobile features connected to a Node.js backend.",
-        tags: ["React", "React Native", "Node.js", "Express", "MongoDB", "Zod", "TailwindCSS"],
+        description: "Mock payments workflow with auth, transfers, rollback handling, and server-side validation on a Node.js + Express backend.",
+        tags: ["React", "Node.js", "Express", "MongoDB", "Zod", "TailwindCSS"],
         github: "https://github.com/Prasadkadam03/PayTM",
         demo: "https://paytm-1-6ke7.onrender.com",
         featured: false
     },
     {
         title: "BookAtlas",
-        description: "API-driven search UI using Open Library data with reusable components, Vite HMR, and Next.js improvements for SEO and performance.",
-        tags: ["React", "TypeScript", "Vite", "TailwindCSS", "Next.js", "Open Library API"],
+        description: "API-driven book search UI on Open Library data, built with reusable React components, TypeScript and Vite, and deployed on Vercel.",
+        tags: ["React", "TypeScript", "Vite", "TailwindCSS", "Open Library API"],
         github: "https://github.com/prasadkadam03/BookAtlas",
         demo: "https://book-atlas.vercel.app/",
         featured: false
@@ -49,17 +49,17 @@ const SKILL_GROUPS = [
     {
         title: "Frontend",
         icon: <Globe size={20} />,
-        skills: ["React", "React Native", "Next.js", "JavaScript (ES6+)", "TypeScript", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"]
+        skills: ["React", "JavaScript (ES6+)", "TypeScript", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"]
     },
     {
         title: "Backend & APIs",
         icon: <Server size={20} />,
-        skills: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Zod Validation"]
+        skills: ["Node.js", "Express.js", "Hono", "REST APIs", "JWT Authentication", "Zod Validation", "C++"]
     },
     {
         title: "Data & Tools",
         icon: <Layers size={20} />,
-        skills: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"]
+        skills: ["MySQL", "PostgreSQL", "Prisma ORM", "MongoDB (Mongoose)", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"]
     }
 ];
 
@@ -76,7 +76,7 @@ const PROCESS_STEPS = [
     },
     {
         title: "Build & Iterate",
-        description: "Ship React, React Native, and Node/Express features in small, testable increments.",
+        description: "Ship React and Node/Express features in small, testable increments.",
         icon: <Code2 size={24} />
     },
     {
@@ -89,7 +89,7 @@ const PROCESS_STEPS = [
 const QUICK_FACTS = [
     { label: "Current Role", value: "Junior Developer @ VIZIPP", icon: <BriefcaseBusiness size={16} /> },
     { label: "Location", value: "Nashik, India (IST)", icon: <Globe size={16} /> },
-    { label: "Core Stack", value: "React, React Native, Node.js, Next.js", icon: <Rocket size={16} /> },
+    { label: "Core Stack", value: "React, JavaScript, Node.js, Express.js", icon: <Rocket size={16} /> },
     { label: "Education", value: "B.Tech in Computer Engineering", icon: <Clock size={16} /> }
 ];
 
@@ -98,24 +98,24 @@ const EXPERIENCE = [
         company: "VIZIPP",
         role: "Junior Developer",
         period: "Oct 2025 - Present",
-        description: "Developed 8+ Node.js/Express REST endpoints with JWT auth, Zod validation, production-grade error handling, MongoDB models, and cross-platform React Native features for VIZIPP products."
+        description: "Build and maintain React features for VIZIPP's client websites, from UI to API integration, owning the full frontend on some of them. Turn design mockups into pixel-accurate, responsive pages, integrate REST APIs with proper loading, error and validation states, and ship through branches, pull requests and code reviews."
     },
     {
         company: "VIZIPP",
         role: "Frontend Developer Intern",
         period: "Apr 2025 - Sep 2025",
-        description: "Built 10+ responsive UI components with React, React Native, and TailwindCSS for VIZIPP, while improving Next.js apps with dynamic routing, SSR, and API integrations."
+        description: "Built 10+ reusable, responsive UI components with React, HTML and CSS that were used across multiple pages, and added routing and API integration in React apps."
     },
 ];
 
 const FAQS = [
     {
         q: "Can you own both frontend and backend?",
-        a: "Yes. I build React, Next.js, and React Native experiences and pair them with Node.js/Express APIs, JWT auth, and Zod validation for reliable end-to-end delivery."
+        a: "At work I focus on React frontends. In my own projects I also build the Node.js/Express or Hono APIs behind them, with JWT auth and Zod validation."
     },
     {
         q: "How do you handle databases?",
-        a: "I model data in MongoDB with Mongoose or in SQL with Prisma, PostgreSQL, and MySQL, keeping the schema and API layer aligned."
+        a: "Mostly SQL: PostgreSQL with Prisma, and MySQL. I've also used MongoDB with Mongoose in my PayTM Clone. I keep the schema and the API layer aligned."
     },
     {
         q: "What does delivery look like?",
@@ -126,7 +126,7 @@ const FAQS = [
 const SERVICES = [
     {
         title: "Product UI Engineering",
-        description: "Responsive, accessible interfaces in React, Next.js, and React Native with reusable components and clean UX details.",
+        description: "Responsive, accessible interfaces in React with reusable components and clean UX details.",
         icon: <Code2 size={24} />
     },
     {
@@ -136,7 +136,7 @@ const SERVICES = [
     },
     {
         title: "Full-Stack Delivery",
-        description: "React and Next.js frontends paired with Node/Express APIs, JWT auth, Zod validation, and stable data flows.",
+        description: "React frontends paired with Node/Express APIs, JWT auth, Zod validation, and stable data flows.",
         icon: <Rocket size={24} />
     },
     {
@@ -147,11 +147,11 @@ const SERVICES = [
     {
         title: "Data Modeling & Delivery",
         icon: <Server size={24} />,
-        description: "MongoDB/PostgreSQL schemas via Mongoose or Prisma, tuned queries, and deployments on Vercel or Cloudflare Workers."
+        description: "PostgreSQL schemas with Prisma (and MongoDB models with Mongoose), deployed on Vercel or Cloudflare Workers."
     },
     {
-        title: "Mobile Feature Delivery",
-        description: "Cross-platform React Native features connected cleanly to backend services and shared product flows.",
+        title: "Responsive Layouts",
+        description: "Pixel-accurate, responsive pages from design mockups that work smoothly across browsers and screen sizes.",
         icon: <Globe size={24} />
     }
 ];
@@ -186,7 +186,7 @@ const Home = () => {
                                 <span className="animate-ping absolute inline-flex h-full w-full  bg-green-500 opacity-75"></span>
                                 <span className="relative inline-flex  h-2 w-2 bg-green-500"></span>
                             </div>
-                            Web + Mobile Delivery
+                            React + Node Web Apps
                         </motion.div>
 
                         <div className="space-y-1">
@@ -207,7 +207,7 @@ const Home = () => {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="text-lg md:text-2xl text-neutral-600 max-w-xl font-light leading-relaxed border-l-2 border-black pl-6"
                         >
-                            Full Stack Developer with hands-on experience delivering web and mobile applications end-to-end. Skilled in JavaScript/TypeScript, React, React Native, Node.js, Next.js, Express, REST APIs, and SQL/NoSQL databases.
+                            Frontend developer with around 1.5 years of experience building web applications with React, JavaScript, HTML and CSS. Outside work, I build full stack projects with Node.js, Express.js and SQL databases.
                         </motion.p>
 
                         <motion.div
@@ -254,7 +254,7 @@ const Home = () => {
 
             <section id="services" className="py-24 md:py-40 px-6 bg-neutral-50">
                 <div className="max-w-7xl mx-auto">
-                    <SectionHeading title="Services" subtitle="Full-stack delivery across interface work, API/auth layers, mobile features, and reliable data models." />
+                    <SectionHeading title="Services" subtitle="Full-stack delivery across interface work, API/auth layers, responsive layouts, and reliable data models." />
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                         {SERVICES.map((s, i) => (
@@ -379,7 +379,7 @@ const Home = () => {
             </section>
 
             <section id="work" className="py-24 md:py-40 px-6 max-w-7xl mx-auto">
-                <SectionHeading title="Projects" subtitle="Recent full-stack builds shipped with React, React Native, Node.js, and well-modeled data layers." />
+                <SectionHeading title="Projects" subtitle="Recent full-stack builds shipped with React, Node.js, and well-modeled data layers." />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {PROJECTS.map((project, idx) => (
@@ -454,13 +454,13 @@ const Home = () => {
                             Let&apos;s build the next release
                         </h2>
                         <p className="text-base md:text-xl text-neutral-600 leading-relaxed max-w-2xl">
-                            I build production web and mobile applications with React, React Native, Next.js, Node.js, Express, JWT auth, Zod validation, and well-modeled MongoDB/PostgreSQL data layers.
+                            I build production web applications with React at work, and full stack projects with Node.js, Express, JWT auth, Zod validation, and well-modeled PostgreSQL/MySQL data layers.
                         </p>
 
                         <div className="flex flex-wrap gap-2 md:gap-3 text-xs md:text-sm text-neutral-700">
-                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Frontend: React, Next.js, React Native</span>
+                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Frontend: React, JavaScript, TypeScript</span>
                             <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Backend: Node.js, Express</span>
-                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Databases: MongoDB, PostgreSQL, MySQL</span>
+                            <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Databases: PostgreSQL, MySQL, MongoDB</span>
                             <span className="px-3 py-1.5  bg-neutral-100 border border-neutral-200">Prisma, Postman, Cloudflare Workers</span>
                         </div>
                     </div>

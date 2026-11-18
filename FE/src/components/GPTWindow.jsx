@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 
 const PROFILE = {
   name: "Prasad Kadam",
-  title: "Full Stack Developer",
+  title: "Frontend Developer",
   location: "Nashik, India",
   locationPreferred: "Nashik, India",
   email: "prasadkadam29503@gmail.com",
@@ -14,58 +14,56 @@ const PROFILE = {
     github: "https://github.com/prasadkadam03",
   },
   summary:
-    "Full Stack Developer with hands-on experience delivering web and mobile applications end-to-end. Skilled in JavaScript/TypeScript, React, React Native, Node.js, Next.js, Express, REST APIs, and SQL/NoSQL databases.",
+    "Frontend developer with around 1.5 years of experience building web applications with React, JavaScript, HTML and CSS. Outside work, I build full stack projects with Node.js, Express.js and SQL databases, and I have a strong base in C++ and data structures.",
   experience: [
     {
       company: "VIZIPP",
       period: "Apr 2025 - Present",
       role: "Frontend Developer Intern -> Junior Developer",
       highlights: [
-        "Developed 10+ responsive UI components using React, React Native, and TailwindCSS for VIZIPP products with strong accessibility and cross-browser support.",
-        "Enhanced Next.js applications with dynamic routing, SSR, and API integrations to improve performance and SEO.",
-        "Delivered 8+ REST API endpoints with Node.js/Express, JWT auth, Zod validation, and production-grade error handling.",
-        "Modeled MongoDB collections with Mongoose and optimized queries and response payloads to reduce endpoint latency by about 25%.",
-        "Built and maintained cross-platform mobile features with React Native at VIZIPP, connected to Node.js backend APIs.",
+        "Build and maintain React features for VIZIPP's client websites, from UI to API integration, owning the full frontend on some of them.",
+        "Turn design mockups into pixel-accurate, responsive pages that work across browsers and screen sizes.",
+        "Integrate REST APIs with proper loading states, error handling and form validation.",
+        "Fix UI bugs, improve page performance, and work through branches, pull requests and code reviews.",
+        "As an intern: built 10+ reusable, responsive UI components with React, HTML and CSS.",
       ],
     },
   ],
   skills: {
-    languages: ["JavaScript (ES6+)", "TypeScript", "SQL"],
-    frontend: ["React", "React Native", "Next.js", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"],
-    backend: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Zod Validation"],
-    dbTools: ["MongoDB (Atlas, Mongoose)", "PostgreSQL", "MySQL", "Prisma ORM", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"],
+    languages: ["C++", "JavaScript (ES6+)", "TypeScript", "SQL"],
+    frontend: ["React", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"],
+    backend: ["Node.js", "Express.js", "Hono", "REST APIs", "JWT Authentication", "Zod Validation"],
+    dbTools: ["MySQL", "PostgreSQL", "Prisma ORM", "MongoDB (Mongoose)", "Git/GitHub", "Postman", "Vercel", "Cloudflare Workers"],
   },
   projects: [
     {
       name: "InspireWrite",
-      stack: ["React", "React Native", "TypeScript", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
+      stack: ["React", "TypeScript", "Hono", "Cloudflare Workers", "Prisma", "PostgreSQL", "JWT", "Zod"],
       period: "Feb 2025",
       bullets: [
-        "Engineered a serverless app on Cloudflare Workers (edge runtime), reducing perceived latency by about 30%.",
-        "Secured protected routes with JWT auth, enforced runtime validation with Zod, and managed relational data using Prisma plus PostgreSQL.",
-        "Implemented cross-platform mobile features in React Native that synced with backend APIs.",
+        "Full stack blogging platform: write posts under categories, search by author, title or content, and like posts.",
+        "Serverless Hono API on Cloudflare Workers with JWT login, Zod validation, and Prisma plus PostgreSQL.",
       ],
       live: "https://inspirewrite.vercel.app/",
       code: "https://github.com/Prasadkadam03/INSPIREWRITE",
     },
     {
       name: "PayTM Clone",
-      stack: ["React", "React Native", "Node.js", "Express", "TailwindCSS", "MongoDB", "Zod"],
+      stack: ["React", "Node.js", "Express", "TailwindCSS", "MongoDB", "Zod"],
       period: "Dec 2024",
       bullets: [
         "Created a mock payments workflow with auth, transfers, and rollback handling for data consistency.",
-        "Designed MongoDB schemas for users and transactions, validated inputs with Zod, and connected mobile features to backend APIs.",
+        "Designed MongoDB schemas for users and transactions and validated inputs with Zod.",
       ],
       live: "https://paytm-1-6ke7.onrender.com",
       code: "https://github.com/Prasadkadam03/PayTM",
     },
     {
       name: "BookAtlas",
-      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Next.js", "Open Library API"],
+      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Open Library API"],
       period: "Sep 2025",
       bullets: [
-        "Built an API-driven search UI with reusable components and deployed it to Vercel.",
-        "Optimized the development workflow with Vite HMR and improved SEO and performance using Next.js features.",
+        "Built an API-driven book search UI on the Open Library API with reusable components, and deployed it to Vercel.",
       ],
       live: "https://book-atlas.vercel.app/",
       code: "https://github.com/prasadkadam03/BookAtlas",
@@ -89,7 +87,7 @@ const OFF_TOPIC_REPLY =
 const CODE_REQUEST_REPLY =
   "I can't provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
 const OUT_OF_STACK_REPLY = (tech) =>
-  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React, React Native, Next.js, Node.js/Express, TypeScript, and MongoDB/PostgreSQL. If the role needs ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
+  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React, JavaScript/TypeScript, Node.js/Express, and SQL databases (PostgreSQL, MySQL). If the role needs ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
 
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -132,13 +130,13 @@ const buildReply = ({ prompt, memory }) => {
 
   const greeting = () =>
     pick([
-      `Hey, I'm **PrasadGPT**.\nI'm a **${PROFILE.title}** working across React, React Native, Next.js, Node/Express, and MongoDB/PostgreSQL.\n\nAre you here for **hiring**, or do you want to talk about a **project**?`,
+      `Hey, I'm **PrasadGPT**.\nI'm a **${PROFILE.title}** working with React and JavaScript, and I build full stack projects with Node/Express and PostgreSQL.\n\nAre you here for **hiring**, or do you want to talk about a **project**?`,
       `Hi, I'm **PrasadGPT** - built from my real resume.\n\nAsk me about **experience**, **projects**, **tech stack**, or **role fit**.`,
     ]);
 
   const hiring = () => {
     const focus = nextMemory.signals.wantsFrontend
-      ? "Frontend / Mobile"
+      ? "Frontend"
       : nextMemory.signals.wantsBackend
       ? "Backend / API"
       : "Full Stack";
@@ -148,9 +146,9 @@ const buildReply = ({ prompt, memory }) => {
       `Yes - I'm open to roles.\n\n` +
       `**Quick fit summary (${focus}):**\n` +
       `- ${PROFILE.experience[0].company} - ${PROFILE.experience[0].role}\n` +
-      `- Built React, React Native, and Next.js interfaces with Node/Express REST APIs\n` +
-      `- JWT auth + Zod validation + MongoDB/PostgreSQL/MySQL\n` +
-      `- Improved API latency by about 25% on high-traffic routes\n\n` +
+      `- Build React features for client websites, owning the full frontend on some\n` +
+      `- Responsive pages from design mockups, REST API integration with loading, error and validation states\n` +
+      `- Full stack projects: Node/Express and Hono APIs, JWT auth + Zod validation + PostgreSQL/MySQL\n\n` +
       `If you paste a JD or tell me the stack and responsibilities, I'll map my experience to it in a recruiter-friendly way.`
     );
   };
@@ -311,7 +309,7 @@ const starterMessages = [
   {
     role: "ai",
     content:
-      "Hey, I'm **PrasadGPT**.\nI'm a Full Stack Developer working across React, React Native, Next.js, Node/Express, and MongoDB/PostgreSQL.\nAsk about hiring, my projects, or tech stack.",
+      "Hey, I'm **PrasadGPT**.\nI'm a Frontend Developer working with React and JavaScript, and I build full stack projects with Node/Express and PostgreSQL.\nAsk about hiring, my projects, or tech stack.",
     meta: { tag: "" },
   },
 ];

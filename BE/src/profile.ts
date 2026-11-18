@@ -5,7 +5,7 @@ export const PROFILE = {
   email: "prasadkadam29503@gmail.com",
   phone: "+91 8055907280",
   summary:
-    "Full Stack Developer with hands-on experience delivering web and mobile applications end-to-end. Skilled in JavaScript/TypeScript, React, React Native, Node.js, Next.js, Express, and REST APIs, with SQL/NoSQL databases.",
+    "Frontend developer with around 1.5 years of experience building web applications with React, JavaScript, HTML and CSS. I enjoy turning designs into clean, responsive pages and connecting them with APIs. Outside work, I build full stack projects with Node.js, Express.js and SQL databases, and I have a strong base in C++ and data structures.",
   role: "Frontend Developer Intern -> Junior Developer",
   company: "VIZIPP",
   experience: {
@@ -13,36 +13,29 @@ export const PROFILE = {
     internship: "Apr 2025 - Sep 2025",
     juniorDeveloper: "Oct 2025 - Present",
     highlights: [
-      "Developed 10+ responsive UI components using React, React Native, and TailwindCSS for VIZIPP products; ensured cross-browser compatibility and accessibility.",
-      "Enhanced Next.js web applications with dynamic routing, SSR, and API integrations to improve performance and SEO.",
-      "Developed 8+ REST API endpoints with Node.js/Express, implementing JWT authentication, Zod validation, and production-grade error handling.",
-      "Modeled MongoDB collections with Mongoose; implemented CRUD operations for users, content, and transactions, and reduced endpoint latency by about 25% on high-traffic routes.",
-      "Built and maintained cross-platform mobile features using React Native at VIZIPP, integrating seamlessly with Node.js backend APIs.",
+      "Build and maintain React features in JavaScript for VIZIPP's client websites, from UI to API integration; worked on several websites and owned the full frontend on some of them.",
+      "Turn design mockups into pixel-accurate, responsive pages using HTML and CSS that work across browsers and screen sizes.",
+      "Integrate REST APIs on the frontend with proper loading states, error handling and form validation.",
+      "Fix UI bugs, improve page performance, and follow a Git workflow with branching, pull requests and code reviews.",
+      "As an intern: built 10+ reusable, responsive UI components with React, HTML and CSS, and added routing and API integration in React apps.",
     ],
   },
   skills: {
-    languages: ["JavaScript (ES6+)", "TypeScript", "SQL"],
-    frontend: [
-      "React",
-      "React Native",
-      "Next.js",
-      "TailwindCSS",
-      "HTML5",
-      "CSS3",
-      "Bootstrap",
-    ],
+    languages: ["C++", "JavaScript (ES6+)", "TypeScript", "SQL"],
+    frontend: ["React", "TailwindCSS", "HTML5", "CSS3", "Bootstrap"],
     backend: [
       "Node.js",
       "Express.js",
+      "Hono",
       "REST APIs",
       "JWT Authentication",
       "Zod Validation",
     ],
     db_tools: [
-      "MongoDB (Atlas, Mongoose)",
-      "PostgreSQL",
       "MySQL",
+      "PostgreSQL",
       "Prisma ORM",
+      "MongoDB (Mongoose, in the PayTM Clone)",
       "Git/GitHub",
       "Cloudflare Workers",
       "Postman",
@@ -55,8 +48,10 @@ export const PROFILE = {
       period: "Feb 2025",
       stack: [
         "React",
-        "React Native",
         "TypeScript",
+        "Vite",
+        "TailwindCSS",
+        "Hono",
         "Cloudflare Workers",
         "Prisma",
         "PostgreSQL",
@@ -66,31 +61,53 @@ export const PROFILE = {
       live: "https://inspirewrite.vercel.app/",
       code: "https://github.com/Prasadkadam03/INSPIREWRITE",
       notes: [
-        "Engineered a serverless app on Cloudflare Workers (edge runtime), reducing perceived latency by about 30%.",
-        "Secured protected routes with JWT auth, enforced runtime validation with Zod, and managed relational data using Prisma + PostgreSQL.",
-        "Implemented cross-platform features for mobile using React Native, syncing with backend APIs.",
+        "Full stack blogging platform where users write posts under categories, search posts by author, title or content, and like posts.",
+        "Frontend with React, Vite, Tailwind CSS and React Router; backend as a serverless Hono API deployed on Cloudflare Workers.",
+        "JWT-based login with bcrypt-hashed passwords, Zod input validation shared through my own npm package, and data storage with Prisma (Accelerate) and PostgreSQL.",
       ],
     },
     {
       name: "PayTM Clone",
       period: "Dec 2024",
-      stack: ["React", "React Native", "Node.js", "Express", "TailwindCSS", "MongoDB", "Zod"],
+      stack: ["React", "Node.js", "Express", "TailwindCSS", "MongoDB", "Zod"],
       live: "https://paytm-1-6ke7.onrender.com",
       code: "https://github.com/Prasadkadam03/PayTM",
       notes: [
         "Created a mock payments workflow (auth + transfers) with rollback handling for data consistency.",
-        "Designed MongoDB schemas for users and transactions, validated inputs with Zod, and developed mobile features connected to backend APIs.",
+        "Designed MongoDB schemas for users and transactions and validated inputs with Zod.",
       ],
     },
     {
       name: "BookAtlas",
       period: "Sep 2025",
-      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Next.js", "Open Library API"],
+      stack: ["React", "TypeScript", "Vite", "TailwindCSS", "Open Library API"],
       live: "https://book-atlas.vercel.app/",
       code: "https://github.com/prasadkadam03/BookAtlas",
       notes: [
-        "Built an API-driven search UI with reusable components and deployed it to Vercel.",
-        "Optimized the development workflow with Vite HMR; enhanced SEO and performance using Next.js features.",
+        "Built an API-driven book search UI on the Open Library API with reusable React components, and deployed it to Vercel.",
+      ],
+    },
+    {
+      name: "Customised Database Management System",
+      period: "2024",
+      stack: ["C++", "OOP", "Linked List"],
+      live: "",
+      code: "https://github.com/Prasadkadam03/Customised_Database_Management_System",
+      notes: [
+        "A mini database system in C++ that stores student records in a singly linked list in memory.",
+        "SQL-style functions to insert, select, update and delete records, including selecting records by a given condition.",
+        "Uses classes, pointers and dynamic memory to manage records.",
+      ],
+    },
+    {
+      name: "Developer Portfolio (this site)",
+      period: "Jul 2026",
+      stack: ["React", "Vite", "TailwindCSS", "Node.js", "Express.js", "TypeScript (backend)", "Zod"],
+      live: "https://prasad-kadam.vercel.app",
+      code: "https://github.com/Prasadkadam03/PrasadKadam",
+      notes: [
+        "Responsive personal portfolio for mobile and desktop.",
+        "PrasadGPT: an AI chat assistant powered by an Express.js API with Zod input validation, rate limiting, and fallback between AI models.",
       ],
     },
     {
@@ -105,7 +122,7 @@ export const PROFILE = {
     },
   ],
   education:
-    "B.Tech in Computer Engineering, SNJB's KBJ College of Engineering (Dec 2021 - May 2025)",
+    "B.Tech in Computer Engineering, SNJB's KBJ College of Engineering, Pune University (Dec 2021 - May 2025)",
   links: {
     github: "https://github.com/prasadkadam03",
     linkedin: "https://linkedin.com/in/prasadkadam03/",
@@ -125,7 +142,7 @@ export const CODE_REQUEST_REPLY =
   "I can't provide full code or HTML here. Please check my live portfolio and GitHub for examples of my work.";
 
 export const OUT_OF_STACK_REPLY = (tech: string) =>
-  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React, React Native, Next.js, Node.js/Express, TypeScript, and MongoDB/PostgreSQL. If you need ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
+  `I haven't used ${tech} yet, but I can ramp quickly. My core stack is React, JavaScript/TypeScript, Node.js/Express, and SQL databases (PostgreSQL, MySQL). If you need ${tech}, I'm confident I can pick it up fast.\n\nContact: ${PROFILE.email} | ${PROFILE.links.linkedin}`;
 
 export const SYSTEM_INSTRUCTION = `
 You are "PrasadGPT" - Prasad Kadam's portfolio assistant.

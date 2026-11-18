@@ -36,7 +36,7 @@ const TerminalWindow = () => {
                     document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
                     break;
                 case 'skills':
-                    response = 'STACK: React/Next.js, Node.js/Express, MongoDB, PostgreSQL, Prisma.';
+                    response = 'STACK: React, JavaScript/TypeScript, Node.js/Express, PostgreSQL, Prisma.';
                     document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
                     break;
                 case 'contact':
